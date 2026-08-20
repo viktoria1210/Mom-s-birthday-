@@ -1,1307 +1,414 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-:root {
-    --wine: #472638;
-    --wine2: #61364b;
-    --pink: #e28baa;
-    --pink-light: #f5c4d2;
-    --cream: #fffaf7;
-    --gold: #cba45d;
-    --text: #35232d;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: var(--cream);
-    color: var(--text);
-    font-family: "Montserrat", sans-serif;
-    overflow-x: hidden;
-}
-
-button {
-    font-family: inherit;
-    cursor: pointer;
-    border: 0;
-}
-
-img {
-    max-width: 100%;
-    display: block;
-}
-
-
 /* ================= LOADER ================= */
 
-.loader {
-    position: fixed;
-    inset: 0;
-    background: #472638;
-    color: white;
-    z-index: 9999;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: .8s ease;
-}
+const loader = document.getElementById("loader");
 
-.loader.hide {
-    opacity: 0;
-    visibility: hidden;
-}
+window.addEventListener("load", () => {
 
-.loader-heart {
-    font-size: 80px;
-    color: var(--pink-light);
-    animation: heartbeat 1.2s infinite;
-}
+    setTimeout(() => {
+        loader.classList.add("hide");
+    }, 1200);
 
-.loader p {
-    margin-top: 20px;
-    font-size: 14px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-}
-
-.loader span {
-    margin-top: 10px;
-    color: #dcbfca;
-    font-size: 13px;
-}
+});
 
 
 /* ================= MUSIC ================= */
 
-.music-btn {
-    position: fixed;
-    right: 22px;
-    top: 22px;
-    z-index: 1000;
-
-    width: 52px;
-    height: 52px;
-
-    border-radius: 50%;
-    background: rgba(255,255,255,.92);
-    color: var(--wine);
-    font-size: 23px;
-
-    box-shadow: 0 10px 30px rgba(40,15,30,.2);
-
-    transition: .3s;
-}
-
-.music-btn:hover {
-    transform: scale(1.1);
-}
-
-.music-btn.playing {
-    animation: musicPulse 1.2s infinite;
-    background: var(--pink);
-    color: white;
-}
-
-.music-hint {
-    position: fixed;
-    right: 25px;
-    top: 82px;
-    z-index: 999;
-
-    background: var(--wine);
-    color: white;
-
-    padding: 10px 15px;
-    border-radius: 20px;
-
-    font-size: 10px;
-    letter-spacing: .5px;
-
-    opacity: 0;
-    transform: translateY(-8px);
-    pointer-events: none;
-
-    transition: .4s;
-}
-
-.music-hint.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* ================= SECRET ================= */
-
-.secret-button {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 900;
-
-    width: 58px;
-    height: 58px;
-
-    border-radius: 50%;
-    background: white;
-    border: 1px solid #e2c49a;
-
-    color: var(--gold);
-    font-family: "Cormorant Garamond";
-    font-size: 22px;
-
-    box-shadow: 0 10px 30px rgba(50,20,30,.15);
-
-    transition: .3s;
-}
-
-.secret-button:hover {
-    transform: rotate(12deg) scale(1.1);
-}
-
-
-/* ================= HERO ================= */
-
-.hero {
-    min-height: 100svh;
-    background:
-        radial-gradient(circle at 50% 20%, #75445d 0%, transparent 40%),
-        linear-gradient(160deg, #61364b, #38202d);
-
-    color: white;
-
-    position: relative;
-    overflow: hidden;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-}
-
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-
-    background:
-        radial-gradient(circle, rgba(255,255,255,.13) 1px, transparent 1px);
-
-    background-size: 35px 35px;
-    opacity: .4;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-
-    width: min(900px, 92%);
-    padding: 90px 20px 60px;
-}
-
-.small-title {
-    color: #d5b36e;
-    font-size: 11px;
-    letter-spacing: 6px;
-    font-weight: 600;
-}
-
-.number-35 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(130px, 25vw, 250px);
-    line-height: .8;
-
-    font-weight: 400;
-    color: transparent;
-
-    -webkit-text-stroke: 1px #d6b16c;
-
-    margin: 35px 0 10px;
-}
-
-.gold-line {
-    width: 100px;
-    height: 1px;
-    background: #d6b16c;
-    margin: 25px auto;
-}
-
-.hero h1 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: clamp(45px, 8vw, 88px);
-    font-weight: 500;
-    line-height: .9;
-}
-
-.hero h1 span {
-    display: block;
-    color: #f1a8c0;
-    font-style: italic;
-}
-
-.hero-subtitle {
-    margin: 30px auto;
-    line-height: 1.8;
-    color: #ead9df;
-    font-size: 14px;
-}
-
-.luxury-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 35px;
-
-    min-height: 58px;
-    padding: 0 25px;
-
-    background: #e18aaa;
-    color: white;
-
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 11px;
-    font-weight: 600;
-
-    transition: .3s;
-}
-
-.luxury-btn:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(225,138,170,.25);
-}
-
-.luxury-btn b {
-    font-size: 18px;
-}
+const music = document.getElementById("birthdayMusic");
+const musicBtn = document.getElementById("musicBtn");
 
-.scroll-hint {
-    margin-top: 60px;
-    font-size: 9px;
-    letter-spacing: 4px;
-    color: #cdb7c0;
-}
-
-.scroll-hint span {
-    display: block;
-    margin-top: 12px;
-    font-size: 20px;
-}
-
-
-/* ================= FLOATING ================= */
-
-.floating-hearts span {
-    position: absolute;
-    color: rgba(255,255,255,.35);
-    font-size: 25px;
-    animation: float 8s infinite ease-in-out;
-}
-
-.floating-hearts span:nth-child(1) {
-    left: 8%;
-    top: 25%;
-}
-
-.floating-hearts span:nth-child(2) {
-    left: 18%;
-    top: 70%;
-}
-
-.floating-hearts span:nth-child(3) {
-    right: 10%;
-    top: 30%;
-}
-
-.floating-hearts span:nth-child(4) {
-    right: 20%;
-    top: 70%;
-}
-
-.floating-hearts span:nth-child(5) {
-    left: 45%;
-    top: 12%;
-}
-
-.floating-hearts span:nth-child(6) {
-    right: 45%;
-    bottom: 15%;
-}
-
-
-/* ================= COMMON ================= */
-
-section:not(.hero):not(.finale) {
-    position: relative;
-    padding: 110px 7%;
-}
-
-.section-number {
-    position: absolute;
-    top: 45px;
-    left: 6%;
-
-    color: #c8a45e;
-    font-size: 11px;
-    letter-spacing: 4px;
-}
+let musicPlaying = false;
 
-.eyebrow {
-    color: #bd9650;
-    font-size: 11px;
-    letter-spacing: 5px;
-    font-weight: 600;
-}
+musicBtn.addEventListener("click", async () => {
 
-h2 {
-    font-family: "Cormorant Garamond", serif;
-    font-weight: 500;
-    font-size: clamp(42px, 6vw, 72px);
-    line-height: .95;
-}
+    try {
 
-h2 i {
-    color: #dc82a4;
-    font-weight: 500;
-}
+        if (music.paused) {
 
-.center {
-    text-align: center;
-}
+            await music.play();
 
-.section-heading {
-    max-width: 800px;
-    margin: 0 auto 55px;
-}
+            musicPlaying = true;
 
-.section-heading h2 {
-    margin-top: 20px;
-}
+            musicBtn.classList.add("playing");
+            musicBtn.innerHTML = "♫";
 
-.section-heading.center {
-    text-align: center;
-}
+        } else {
 
-.section-heading > p:last-child {
-    margin-top: 20px;
-    color: #88727b;
-}
+            music.pause();
 
+            musicPlaying = false;
 
-/* ================= INTRO ================= */
+            musicBtn.classList.remove("playing");
+            musicBtn.innerHTML = "♪";
 
-.intro {
-    min-height: 75vh;
+        }
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    } catch (error) {
 
-    background:
-        radial-gradient(circle at 10% 90%, #f7dbe3, transparent 35%),
-        var(--cream);
-}
+        showToast("Не вдалося запустити музику 💗");
 
-.intro-inner {
-    max-width: 760px;
-    text-align: center;
-}
+    }
 
-.intro h2 {
-    margin: 25px 0;
-}
+});
 
-.intro-text {
-    max-width: 570px;
-    margin: auto;
 
-    font-size: 15px;
-    line-height: 2;
-    color: #6f5a64;
-}
+/* ================= START BUTTON ================= */
 
-.signature {
-    margin-top: 35px;
-    font-family: "Parisienne", cursive;
-    color: #d47f9d;
-    font-size: 30px;
-}
+document.getElementById("startBtn").addEventListener("click", async () => {
 
+    try {
 
-/* ================= PHOTOS ================= */
+        if (music.paused) {
+            await music.play();
 
-.film-section {
-    background: #f7ece8;
-}
+            musicPlaying = true;
+            musicBtn.classList.add("playing");
 
-.photo-grid {
-    max-width: 1150px;
-    margin: auto;
+        }
 
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-}
+    } catch (error) {
+        console.log("Music requires user interaction.");
+    }
 
-.photo-card {
-    position: relative;
-    overflow: hidden;
-    aspect-ratio: 4 / 5;
+    document.querySelector(".intro").scrollIntoView({
+        behavior: "smooth"
+    });
 
-    background: #ddd;
+});
 
-    border-radius: 4px;
 
-    box-shadow: 0 15px 35px rgba(70,35,45,.12);
+/* ================= 35 REASONS ================= */
 
-    cursor: pointer;
-}
+const reasons = [
 
-.photo-card.large {
-    grid-row: span 1;
-}
+    "Ти завжди поруч ❤️",
+    "Ти вмієш підтримати саме тоді, коли це потрібно.",
+    "Ти робиш наш дім справжнім домом.",
+    "Ти неймовірно турботлива.",
+    "Ти вмієш розсмішити навіть у найгірший день.",
+    "Ти завжди віриш у нас.",
+    "Твої обійми — найкращі.",
+    "Ти вмієш слухати.",
+    "Ти дуже сильна.",
+    "Ти красива не тільки зовні.",
+    "Ти вчиш нас бути добрими.",
+    "Ти завжди знаходиш вихід.",
+    "Ти вмієш любити без умов.",
+    "Ти наш головний тил.",
+    "Ти пам'ятаєш навіть найменші дрібниці.",
+    "Ти робиш звичайні дні особливими.",
+    "Ти завжди захищаєш нас.",
+    "Ти вмієш пробачати.",
+    "Ти надихаєш.",
+    "Ти дуже смішна, коли цього не помічаєш 😄",
+    "Ти даруєш відчуття безпеки.",
+    "Ти завжди стараєшся для нашої сім'ї.",
+    "Ти знаєш нас краще за всіх.",
+    "Ти вмієш створювати затишок.",
+    "Ти наш найкращий порадник.",
+    "Ти ніколи не здаєшся.",
+    "Ти вмієш радіти маленьким речам.",
+    "Ти завжди знаходиш потрібні слова.",
+    "Ти наша підтримка.",
+    "Ти наша любов.",
+    "Ти наша сім'я.",
+    "Ти наше натхнення.",
+    "Ти наш спокій.",
+    "Ти наше щастя.",
+    "І просто тому, що ти — наша мама. ❤️"
 
-.photo-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+];
 
-    transition: .6s;
-}
+let reasonIndex = 0;
 
-.photo-card:hover img {
-    transform: scale(1.07);
-}
+const reasonNumber = document.getElementById("reasonNumber");
+const reasonText = document.getElementById("reasonText");
+const nextReason = document.getElementById("nextReason");
 
-.photo-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(transparent 60%, rgba(30,10,20,.5));
-}
+nextReason.addEventListener("click", () => {
 
-.photo-card span {
-    position: absolute;
-    bottom: 14px;
-    left: 16px;
+    reasonIndex++;
 
-    color: white;
-    z-index: 2;
+    if (reasonIndex >= reasons.length) {
+        reasonIndex = 0;
+    }
 
-    font-size: 10px;
-    letter-spacing: 3px;
-}
+    reasonNumber.textContent =
+        String(reasonIndex + 1).padStart(2, "0");
 
-.film-caption {
-    text-align: center;
-    margin-top: 35px;
+    reasonText.style.opacity = "0";
 
-    color: #8b737c;
-    font-size: 11px;
-    letter-spacing: 2px;
-}
+    setTimeout(() => {
 
+        reasonText.textContent = reasons[reasonIndex];
 
-/* ================= REASONS ================= */
+        reasonText.style.opacity = "1";
 
-.reasons-section {
-    background: white;
-}
+    }, 200);
 
-.reasons-grid {
-    max-width: 1100px;
-    margin: auto;
+});
 
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 14px;
-}
 
-.reason {
-    min-height: 155px;
-    padding: 22px 16px;
+/* ================= RUNNING "NO" BUTTON ================= */
 
-    background: #fff8fa;
-    border: 1px solid #f0d9df;
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const gameMessage = document.getElementById("gameMessage");
 
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+function escapeNoButton() {
 
-    transition: .35s;
-}
+    const padding = 15;
 
-.reason:hover {
-    transform: translateY(-7px);
-    background: #fbe8ee;
-    box-shadow: 0 15px 30px rgba(90,35,55,.1);
-}
+    const maxX =
+        window.innerWidth - noBtn.offsetWidth - padding;
 
-.reason-number {
-    color: #cba45d;
-    font-family: "Cormorant Garamond";
-    font-size: 25px;
-}
+    const maxY =
+        window.innerHeight - noBtn.offsetHeight - padding;
 
-.reason p {
-    font-family: "Cormorant Garamond";
-    font-size: 21px;
-    line-height: 1.05;
-}
+    const x =
+        Math.max(
+            padding,
+            Math.random() * maxX
+        );
 
+    const y =
+        Math.max(
+            padding,
+            Math.random() * maxY
+        );
 
-/* ================= GAME ================= */
+    noBtn.style.position = "fixed";
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
 
-.game-section {
-    background: #f6e5e9;
+    noBtn.style.zIndex = "9990";
 }
-
-.game-card {
-    max-width: 760px;
-    margin: auto;
 
-    padding: 55px 7%;
 
-    background: #4a2739;
-    color: white;
+/* Комп'ютер */
 
-    text-align: center;
+noBtn.addEventListener("mouseenter", escapeNoButton);
 
-    box-shadow: 0 30px 70px rgba(60,25,40,.2);
-
-    position: relative;
-}
 
-.game-top {
-    display: flex;
-    justify-content: space-between;
+/* Телефон */
 
-    color: #d5ad67;
-    font-size: 9px;
-    letter-spacing: 3px;
-}
+noBtn.addEventListener("touchstart", (event) => {
 
-.game-icon {
-    font-size: 50px;
-    color: #e493ad;
-    margin: 25px;
-}
+    event.preventDefault();
 
-.game-card h2 {
-    margin: 20px 0;
-}
+    escapeNoButton();
 
-.game-description {
-    color: #d8c3cb;
-    font-size: 13px;
-}
+});
 
-.game-buttons {
-    margin-top: 35px;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
+/* Якщо все-таки натиснули */
 
-    min-height: 80px;
-}
+noBtn.addEventListener("click", () => {
 
-.yes-btn,
-.no-btn {
-    min-height: 52px;
-    padding: 0 22px;
+    escapeNoButton();
 
-    font-size: 11px;
-    font-weight: 600;
+});
 
-    transition: .2s;
-}
 
-.yes-btn {
-    background: #e28baa;
-    color: white;
-}
+/* YES */
 
-.no-btn {
-    background: white;
-    color: #543343;
+yesBtn.addEventListener("click", () => {
 
-    position: relative;
-}
+    gameMessage.innerHTML =
+        "Правильна відповідь! 😌❤️<br>Ми й не сумнівалися.";
 
-#gameMessage {
-    min-height: 30px;
-    margin-top: 20px;
+    showToast("МАМА — ОФІЦІЙНО НАЙКРАЩА ❤️");
 
-    color: #f0b4c8;
-    font-family: "Parisienne";
-    font-size: 25px;
-}
+});
 
 
 /* ================= QUIZ ================= */
 
-.quiz-section {
-    background: #fffaf7;
+const quizQuestions = [
+
+    {
+        q: "Хто в нашій сім'ї найчастіше каже «я вже йду»?",
+        a: [
+            "Мама",
+            "Тато",
+            "Хтось із дітей",
+            "Всі одразу 😂"
+        ]
+    },
+
+    {
+        q: "Що мама любить найбільше?",
+        a: [
+            "Коли всі вдома",
+            "Коли тихо",
+            "Коли всі слухаються",
+            "Все одразу ❤️"
+        ]
+    },
+
+    {
+        q: "Що найкраще описує нашу маму?",
+        a: [
+            "Турботлива",
+            "Сильна",
+            "Весела",
+            "Все разом"
+        ]
+    },
+
+    {
+        q: "Скільки років сьогодні нашій іменинниці?",
+        a: [
+            "25",
+            "30",
+            "35",
+            "35, але виглядає на 25 😌"
+        ]
+    },
+
+    {
+        q: "Яка мама?",
+        a: [
+            "Найкраща",
+            "Найрідніша",
+            "Наймиліша",
+            "ВСІ ВАРІАНТИ ❤️"
+        ]
+    }
+
+];
+
+let quizIndex = 0;
+
+const question = document.getElementById("question");
+const answers = document.getElementById("answers");
+const quizNumber = document.getElementById("quizNumber");
+const quizResult = document.getElementById("quizResult");
+
+function loadQuestion() {
+
+    const current = quizQuestions[quizIndex];
+
+    quizNumber.textContent =
+        String(quizIndex + 1).padStart(2, "0");
+
+    question.textContent = current.q;
+
+    answers.innerHTML = "";
+
+    current.a.forEach(answer => {
+
+        const button = document.createElement("button");
+
+        button.textContent = answer;
+
+        button.addEventListener("click", () => {
+
+            quizResult.textContent =
+                "Правильно! ❤️";
+
+            setTimeout(() => {
+
+                quizIndex++;
+
+                if (quizIndex >= quizQuestions.length) {
+
+                    quizResult.textContent =
+                        "Тест завершено! Мама знає все 😎❤️";
+
+                    return;
+
+                }
+
+                quizResult.textContent = "";
+
+                loadQuestion();
+
+            }, 700);
+
+        });
+
+        answers.appendChild(button);
+
+    });
+
 }
 
-.quiz-card {
-    max-width: 760px;
-    margin: auto;
+loadQuestion();
 
-    background: white;
-    padding: 45px 7%;
 
-    border: 1px solid #ead8d6;
-    box-shadow: 0 20px 50px rgba(70,30,40,.08);
-}
+/* ================= MAGIC FINAL ================= */
 
-.quiz-progress {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+document.getElementById("magicBtn").addEventListener("click", () => {
 
-    color: #bd9650;
-    font-size: 11px;
-}
+    for (let i = 0; i < 35; i++) {
 
-.progress-bar {
-    flex: 1;
-    height: 2px;
-    background: #eadde0;
-}
+        const heart = document.createElement("div");
 
-.progress-bar i {
-    display: block;
-    height: 100%;
-    width: 20%;
-    background: #d6819f;
-    transition: .4s;
-}
+        heart.textContent =
+            Math.random() > .5 ? "♡" : "✦";
 
-.quiz-card h3 {
-    font-family: "Cormorant Garamond";
-    font-size: 34px;
-    font-weight: 500;
-    margin: 45px 0 30px;
-}
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "100vh";
 
-.answers {
-    display: grid;
-    gap: 12px;
-}
+        heart.style.color =
+            Math.random() > .5 ? "#e58aaa" : "#d9ae6c";
 
-.answer {
-    background: #fff6f8;
-    border: 1px solid #efd9e0;
-    padding: 17px;
-    text-align: left;
+        heart.style.fontSize =
+            (15 + Math.random() * 30) + "px";
 
-    transition: .25s;
-}
+        heart.style.zIndex = "10000";
 
-.answer:hover {
-    background: #f5dce4;
-    transform: translateX(5px);
-}
+        heart.style.pointerEvents = "none";
 
-.answer.correct {
-    background: #dcebdc;
-    border-color: #9db99d;
-}
+        document.body.appendChild(heart);
 
-.answer.wrong {
-    background: #f3d8d8;
-}
+        const duration =
+            2000 + Math.random() * 2500;
 
-.quiz-result {
-    margin-top: 25px;
-    min-height: 30px;
-
-    font-family: "Parisienne";
-    font-size: 26px;
-    color: #d17e9b;
-}
-
-
-/* ================= LETTER ================= */
-
-.letter-section {
-    background: #f8e8e3;
-    overflow: hidden;
-}
-
-.letter-wrapper {
-    max-width: 800px;
-    margin: 50px auto 0;
-}
-
-.envelope {
-    position: relative;
-
-    min-height: 500px;
-
-    background: #df83a4;
-
-    padding: 55px;
-
-    cursor: pointer;
-
-    box-shadow: 0 30px 70px rgba(90,35,55,.15);
-
-    perspective: 1000px;
-}
-
-.envelope-back {
-    position: absolute;
-    inset: 0;
-
-    background:
-        linear-gradient(135deg, #d9789d 50%, #e58cad 50%);
-}
-
-.letter-paper {
-    position: relative;
-    z-index: 3;
-
-    background: #fffdfb;
-
-    min-height: 470px;
-
-    padding: 50px;
-
-    box-shadow: 0 10px 30px rgba(60,30,40,.1);
-
-    transition: .8s;
-}
-
-.envelope-flap {
-    position: absolute;
-    z-index: 5;
-
-    top: 0;
-    left: 0;
-
-    width: 100%;
-    height: 48%;
-
-    background: #ed9bb6;
-
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-
-    transform-origin: top;
-    transition: .8s;
-}
-
-.envelope-seal {
-    position: absolute;
-    z-index: 7;
-
-    left: 50%;
-    top: 43%;
-
-    transform: translate(-50%, -50%);
-
-    width: 65px;
-    height: 65px;
-
-    border-radius: 50%;
-
-    display: grid;
-    place-items: center;
-
-    background: #fffaf7;
-    color: #d67f9e;
-
-    font-size: 28px;
-
-    box-shadow: 0 5px 20px rgba(70,20,40,.15);
-
-    transition: .5s;
-}
-
-.envelope.open .envelope-flap {
-    transform: rotateX(180deg);
-    z-index: 1;
-}
-
-.envelope.open .envelope-seal {
-    opacity: 0;
-}
-
-.envelope.open .letter-paper {
-    transform: translateY(-20px);
-}
-
-.letter-paper h2 {
-    margin: 15px 0 25px;
-    font-size: clamp(40px, 7vw, 62px);
-}
-
-.letter-decoration {
-    position: absolute;
-    top: 35px;
-    right: 40px;
-
-    color: #d67f9e;
-    font-size: 38px;
-}
-
-.letter-content {
-    color: #62515a;
-    font-family: "Cormorant Garamond";
-    font-size: 20px;
-    line-height: 1.4;
-}
-
-.letter-content p {
-    margin-bottom: 17px;
-}
-
-.big-love {
-    color: #d17898;
-    font-size: 30px;
-}
-
-.click-envelope {
-    text-align: center;
-    margin-top: 25px;
-
-    color: #987a84;
-    font-size: 10px;
-    letter-spacing: 4px;
-    text-transform: uppercase;
-}
-
-
-/* ================= CAKE ================= */
-
-.cake-section {
-    background: #fffaf7;
-}
-
-.birthday-cake {
-    width: 280px;
-    margin: 80px auto 30px;
-
-    position: relative;
-
-    cursor: pointer;
-}
-
-.candles {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-
-    height: 75px;
-}
-
-.candle {
-    background: transparent;
-    font-size: 32px;
-    transition: .3s;
-}
-
-.candle.off {
-    filter: grayscale(1);
-    opacity: .35;
-    transform: translateY(15px);
-}
-
-.cake-top {
-    height: 35px;
-
-    border-radius: 50% 50% 20% 20%;
-
-    background: #f2a4bd;
-}
-
-.cake-body {
-    height: 80px;
-
-    background:
-        repeating-linear-gradient(
-            90deg,
-            #d8789b 0,
-            #d8789b 25px,
-            #e792ad 25px,
-            #e792ad 50px
+        heart.animate(
+            [
+                {
+                    transform: "translateY(0) rotate(0)",
+                    opacity: 1
+                },
+                {
+                    transform:
+                        `translateY(-110vh) rotate(${Math.random() * 360}deg)`,
+                    opacity: 0
+                }
+            ],
+            {
+                duration: duration,
+                easing: "ease-out"
+            }
         );
-}
 
-.cake-bottom {
-    height: 25px;
-    border-radius: 0 0 20px 20px;
-    background: #bd5e83;
-}
+        setTimeout(() => {
+            heart.remove();
+        }, duration);
 
-#candleText {
-    color: #8c717b;
-}
+    }
 
+    showToast("З 35-річчям, мамусю! ❤️✨");
 
-/* ================= FINALE ================= */
-
-.finale {
-    min-height: 100svh;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    text-align: center;
-
-    background:
-        radial-gradient(circle at center, #70445a, transparent 55%),
-        linear-gradient(160deg, #4b293b, #291721);
-
-    color: white;
-
-    position: relative;
-    overflow: hidden;
-}
-
-.finale-content {
-    width: min(850px, 90%);
-}
-
-.finale-stars {
-    color: #e2bd76;
-    font-size: 25px;
-}
-
-.finale-number {
-    font-family: "Cormorant Garamond";
-    font-size: 150px;
-    line-height: .8;
-
-    color: transparent;
-    -webkit-text-stroke: 1px #d8b46e;
-
-    margin: 25px 0;
-}
-
-.finale h2 {
-    font-size: clamp(60px, 10vw, 110px);
-}
-
-.final-message {
-    margin: 35px 0;
-
-    color: #e6d6dc;
-    line-height: 1.8;
-}
-
-.final-quote {
-    color: #eea6bf;
-    font-family: "Cormorant Garamond";
-    font-size: 27px;
-    font-style: italic;
-}
-
-.final-hearts {
-    color: #e9a1ba;
-    letter-spacing: 15px;
-    margin: 25px;
-}
-
-
-/* ================= MODAL ================= */
-
-.photo-modal {
-    position: fixed;
-    inset: 0;
-
-    z-index: 5000;
-
-    background: rgba(20,8,15,.92);
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 30px;
-
-    opacity: 0;
-    visibility: hidden;
-
-    transition: .3s;
-}
-
-.photo-modal.show {
-    opacity: 1;
-    visibility: visible;
-}
-
-.photo-modal img {
-    max-width: 90vw;
-    max-height: 85vh;
-
-    object-fit: contain;
-
-    box-shadow: 0 30px 80px black;
-}
-
-.modal-close {
-    position: absolute;
-    top: 20px;
-    right: 25px;
-
-    background: transparent;
-    color: white;
-
-    font-size: 45px;
-}
+});
 
 
 /* ================= TOAST ================= */
 
-.toast {
-    position: fixed;
-    left: 50%;
-    bottom: 30px;
+function showToast(message) {
 
-    transform: translate(-50%, 100px);
+    const toast = document.getElementById("toast");
 
-    background: #482638;
-    color: white;
+    toast.textContent = message;
 
-    padding: 14px 22px;
+    toast.classList.add("show");
 
-    border-radius: 30px;
+    setTimeout(() => {
 
-    font-size: 12px;
+        toast.classList.remove("show");
 
-    z-index: 6000;
+    }, 3000);
 
-    opacity: 0;
-
-    transition: .4s;
-}
-
-.toast.show {
-    transform: translate(-50%, 0);
-    opacity: 1;
-}
-
-
-/* ================= ANIMATION ================= */
-
-.reveal {
-    opacity: 0;
-    transform: translateY(35px);
-    transition: 1s ease;
-}
-
-.reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-@keyframes heartbeat {
-    0%,100% { transform: scale(1); }
-    50% { transform: scale(1.18); }
-}
-
-@keyframes musicPulse {
-    50% {
-        box-shadow: 0 0 0 12px rgba(226,139,170,.15);
     }
-}
-
-@keyframes float {
-    0%,100% {
-        transform: translateY(0) rotate(0);
-    }
-
-    50% {
-        transform: translateY(-30px) rotate(15deg);
-    }
-}
-
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 700px) {
-
-    section:not(.hero):not(.finale) {
-        padding: 90px 20px;
-    }
-
-    .section-number {
-        top: 28px;
-        left: 22px;
-    }
-
-    .music-btn {
-        right: 15px;
-        top: 15px;
-
-        width: 45px;
-        height: 45px;
-    }
-
-    .music-hint {
-        right: 15px;
-        top: 68px;
-        max-width: 220px;
-        text-align: center;
-    }
-
-    .hero-content {
-        padding-top: 70px;
-    }
-
-    .number-35 {
-        font-size: 125px;
-    }
-
-    .hero h1 {
-        font-size: 52px;
-    }
-
-    .hero-subtitle {
-        font-size: 13px;
-    }
-
-    .luxury-btn {
-        width: 100%;
-        max-width: 330px;
-        gap: 18px;
-    }
-
-    .photo-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-
-    .photo-card {
-        aspect-ratio: 3 / 4;
-    }
-
-    .reasons-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 9px;
-    }
-
-    .reason {
-        min-height: 135px;
-        padding: 16px 12px;
-    }
-
-    .reason p {
-        font-size: 18px;
-    }
-
-    .game-card {
-        padding: 40px 20px;
-    }
-
-    .game-buttons {
-        position: relative;
-        flex-direction: column;
-        gap: 12px;
-
-        min-height: 145px;
-    }
-
-    .yes-btn {
-        width: 100%;
-    }
-
-    .no-btn {
-        width: 90px;
-    }
-
-    .quiz-card {
-        padding: 30px 20px;
-    }
-
-    .quiz-card h3 {
-        font-size: 30px;
-        margin: 35px 0 25px;
-    }
-
-    .envelope {
-        min-height: 580px;
-        padding: 20px;
-    }
-
-    .letter-paper {
-        min-height: 540px;
-        padding: 35px 24px;
-
-        overflow-y: auto;
-    }
-
-    .letter-paper h2 {
-        font-size: 45px;
-    }
-
-    .letter-decoration {
-        right: 20px;
-        top: 20px;
-    }
-
-    .letter-content {
-        font-size: 18px;
-    }
-
-    .big-love {
-        font-size: 27px;
-    }
-
-    .finale-number {
-        font-size: 110px;
-    }
-
-    .finale h2 {
-        font-size: 60px;
-    }
-
-    .final-quote {
-        font-size: 23px;
-    }
-}
-
-
-/* EXTRA SMALL PHONES */
-
-@media (max-width: 390px) {
-
-    .hero h1 {
-        font-size: 45px;
-    }
-
-    .number-35 {
-        font-size: 110px;
-    }
-
-    .reasons-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .reason {
-        min-height: 125px;
-    }
-
-    .reason p {
-        font-size: 16px;
-    }
-
-    .envelope {
-        padding: 12px;
-    }
-
-    .letter-paper {
-        padding: 30px 18px;
-    }
-}
