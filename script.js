@@ -1,14 +1,11 @@
-/* =========================================================
-   35 РОКІВ — ПОДАРУНОК ДЛЯ МАМИ
-========================================================= */
-
-
 /* ================= LOADER ================= */
+
+const loader = document.getElementById("loader");
 
 window.addEventListener("load", () => {
 
     setTimeout(() => {
-        document.getElementById("loader").classList.add("hide");
+        loader.classList.add("hide");
     }, 1200);
 
 });
@@ -18,71 +15,59 @@ window.addEventListener("load", () => {
 
 const music = document.getElementById("birthdayMusic");
 const musicBtn = document.getElementById("musicBtn");
-const musicHint = document.getElementById("musicHint");
 
 let musicPlaying = false;
 
-function startMusic() {
+musicBtn.addEventListener("click", async () => {
 
-    music.play()
-        .then(() => {
+    try {
+
+        if (music.paused) {
+
+            await music.play();
 
             musicPlaying = true;
 
             musicBtn.classList.add("playing");
-            musicBtn.textContent = "❚❚";
+            musicBtn.innerHTML = "♫";
 
-            musicHint.classList.remove("show");
+        } else {
 
-        })
-        .catch(() => {
+            music.pause();
 
-            showToast("Натисни на ♫ ще раз 🎵");
+            musicPlaying = false;
 
-        });
-}
+            musicBtn.classList.remove("playing");
+            musicBtn.innerHTML = "♪";
 
-function stopMusic() {
+        }
 
-    music.pause();
+    } catch (error) {
 
-    musicPlaying = false;
+        showToast("Не вдалося запустити музику 💗");
 
-    musicBtn.classList.remove("playing");
-    musicBtn.textContent = "♫";
-}
-
-musicBtn.addEventListener("click", () => {
-
-    if (musicPlaying) {
-        stopMusic();
-    } else {
-        startMusic();
     }
 
 });
 
 
-/* показати підказку */
+/* ================= START BUTTON ================= */
 
-setTimeout(() => {
+document.getElementById("startBtn").addEventListener("click", async () => {
 
-    if (!musicPlaying) {
-        musicHint.classList.add("show");
+    try {
 
-        setTimeout(() => {
-            musicHint.classList.remove("show");
-        }, 5000);
+        if (music.paused) {
+            await music.play();
+
+            musicPlaying = true;
+            musicBtn.classList.add("playing");
+
+        }
+
+    } catch (error) {
+        console.log("Music requires user interaction.");
     }
-
-}, 1800);
-
-
-/* ================= HERO BUTTON ================= */
-
-document.getElementById("startBtn").addEventListener("click", () => {
-
-    startMusic();
 
     document.querySelector(".intro").scrollIntoView({
         behavior: "smooth"
@@ -91,156 +76,117 @@ document.getElementById("startBtn").addEventListener("click", () => {
 });
 
 
-/* ================= REVEAL ================= */
-
-const revealElements = document.querySelectorAll(".reveal");
-
-const revealObserver = new IntersectionObserver(
-    entries => {
-
-        entries.forEach(entry => {
-
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-            }
-
-        });
-
-    },
-    {
-        threshold: 0.12
-    }
-);
-
-revealElements.forEach(element => {
-    revealObserver.observe(element);
-});
-
-
 /* ================= 35 REASONS ================= */
 
 const reasons = [
 
-    "Ти завжди поруч.",
-    "Ти вмієш підтримати.",
-    "Ти даруєш тепло.",
-    "Ти вмієш розсмішити.",
+    "Ти завжди поруч ❤️",
+    "Ти вмієш підтримати саме тоді, коли це потрібно.",
+    "Ти робиш наш дім справжнім домом.",
+    "Ти неймовірно турботлива.",
+    "Ти вмієш розсмішити навіть у найгірший день.",
+    "Ти завжди віриш у нас.",
     "Твої обійми — найкращі.",
-    "Ти віриш у нас.",
-    "Ти терпиш наші витівки 😅",
-    "Ти створюєш затишок.",
-    "Ти дуже добра.",
-    "Ти сильна.",
-    "Ти турботлива.",
-    "Ти красива.",
-    "Ти надихаєш.",
     "Ти вмієш слухати.",
-    "Ти завжди знайдеш рішення.",
-    "Ти робиш дім домом.",
-    "Ти пам'ятаєш важливі дрібниці.",
+    "Ти дуже сильна.",
+    "Ти красива не тільки зовні.",
+    "Ти вчиш нас бути добрими.",
+    "Ти завжди знаходиш вихід.",
     "Ти вмієш любити без умов.",
-    "Ти смієшся від душі.",
-    "Ти наша опора.",
+    "Ти наш головний тил.",
+    "Ти пам'ятаєш навіть найменші дрібниці.",
+    "Ти робиш звичайні дні особливими.",
+    "Ти завжди захищаєш нас.",
     "Ти вмієш пробачати.",
-    "Ти завжди думаєш про сім'ю.",
-    "Ти неймовірно щира.",
-    "Ти особлива.",
-    "Ти наша супергероїня.",
-    "Ти вмієш робити свята.",
-    "Ти завжди переживаєш за нас.",
-    "Ти даруєш віру.",
-    "Ти вмієш бути другом.",
-    "Ти робиш світ добрішим.",
-    "Ти наша гордість.",
+    "Ти надихаєш.",
+    "Ти дуже смішна, коли цього не помічаєш 😄",
+    "Ти даруєш відчуття безпеки.",
+    "Ти завжди стараєшся для нашої сім'ї.",
+    "Ти знаєш нас краще за всіх.",
+    "Ти вмієш створювати затишок.",
+    "Ти наш найкращий порадник.",
+    "Ти ніколи не здаєшся.",
+    "Ти вмієш радіти маленьким речам.",
+    "Ти завжди знаходиш потрібні слова.",
+    "Ти наша підтримка.",
+    "Ти наша любов.",
+    "Ти наша сім'я.",
     "Ти наше натхнення.",
-    "Ти наша радість.",
-    "Ти просто наша мама.",
-    "Бо ми тебе безмежно любимо ❤️"
+    "Ти наш спокій.",
+    "Ти наше щастя.",
+    "І просто тому, що ти — наша мама. ❤️"
 
 ];
 
-const reasonsGrid = document.getElementById("reasonsGrid");
+let reasonIndex = 0;
 
-reasons.forEach((reason, index) => {
+const reasonNumber = document.getElementById("reasonNumber");
+const reasonText = document.getElementById("reasonText");
+const nextReason = document.getElementById("nextReason");
 
-    const card = document.createElement("div");
+nextReason.addEventListener("click", () => {
 
-    card.className = "reason";
+    reasonIndex++;
 
-    card.innerHTML = `
-        <span class="reason-number">
-            ${String(index + 1).padStart(2, "0")}
-        </span>
+    if (reasonIndex >= reasons.length) {
+        reasonIndex = 0;
+    }
 
-        <p>${reason}</p>
-    `;
+    reasonNumber.textContent =
+        String(reasonIndex + 1).padStart(2, "0");
 
-    card.addEventListener("click", () => {
+    reasonText.style.opacity = "0";
 
-        showToast(
-            index === 34
-                ? "І це найголовніша причина ❤️"
-                : `Причина №${index + 1} знайдена ♡`
-        );
+    setTimeout(() => {
 
-    });
+        reasonText.textContent = reasons[reasonIndex];
 
-    reasonsGrid.appendChild(card);
+        reasonText.style.opacity = "1";
+
+    }, 200);
 
 });
 
 
-/* ================= FUN GAME ================= */
+/* ================= RUNNING "NO" BUTTON ================= */
 
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const gameMessage = document.getElementById("gameMessage");
 
-let noAttempts = 0;
+function escapeNoButton() {
 
-function moveNoButton() {
+    const padding = 15;
 
-    noAttempts++;
+    const maxX =
+        window.innerWidth - noBtn.offsetWidth - padding;
 
-    const padding = 10;
+    const maxY =
+        window.innerHeight - noBtn.offsetHeight - padding;
 
-    const maxX = window.innerWidth - noBtn.offsetWidth - padding * 2;
-    const maxY = window.innerHeight - noBtn.offsetHeight - padding * 2;
+    const x =
+        Math.max(
+            padding,
+            Math.random() * maxX
+        );
 
-    const x = Math.max(
-        padding,
-        Math.random() * maxX
-    );
-
-    const y = Math.max(
-        padding,
-        Math.random() * maxY
-    );
+    const y =
+        Math.max(
+            padding,
+            Math.random() * maxY
+        );
 
     noBtn.style.position = "fixed";
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
-    noBtn.style.zIndex = "4000";
 
-    const messages = [
-        "Ой-ой 😌",
-        "Не втечеш!",
-        "Ця кнопка знає правду 😂",
-        "Спробуй ще раз!",
-        "НІ — не приймається!",
-        "Мамо, ну серйозно? 😭",
-        "Це неможлива відповідь ❤️"
-    ];
-
-    gameMessage.textContent =
-        messages[Math.min(noAttempts - 1, messages.length - 1)];
-
+    noBtn.style.zIndex = "9990";
 }
 
 
 /* Комп'ютер */
 
-noBtn.addEventListener("mouseenter", moveNoButton);
+noBtn.addEventListener("mouseenter", escapeNoButton);
 
 
 /* Телефон */
@@ -249,18 +195,16 @@ noBtn.addEventListener("touchstart", (event) => {
 
     event.preventDefault();
 
-    moveNoButton();
+    escapeNoButton();
 
 });
 
 
-/* Якщо все-таки натиснула */
+/* Якщо все-таки натиснули */
 
-noBtn.addEventListener("click", (event) => {
+noBtn.addEventListener("click", () => {
 
-    event.preventDefault();
-
-    moveNoButton();
+    escapeNoButton();
 
 });
 
@@ -269,12 +213,10 @@ noBtn.addEventListener("click", (event) => {
 
 yesBtn.addEventListener("click", () => {
 
-    gameMessage.textContent =
-        "ОТ І ПРАВИЛЬНА ВІДПОВІДЬ! 👑❤️";
+    gameMessage.innerHTML =
+        "Правильна відповідь! 😌❤️<br>Ми й не сумнівалися.";
 
-    yesBtn.textContent = "МАМА №1 У СВІТІ ♡";
-
-    createConfetti();
+    showToast("МАМА — ОФІЦІЙНО НАЙКРАЩА ❤️");
 
 });
 
@@ -284,340 +226,176 @@ yesBtn.addEventListener("click", () => {
 const quizQuestions = [
 
     {
-        question: "Що мама любить найбільше?",
-        answers: [
-            "Свою сім'ю ❤️",
-            "Понеділки",
-            "Робити домашку",
-            "Стояти в черзі"
-        ],
-        correct: 0
+        q: "Хто в нашій сім'ї найчастіше каже «я вже йду»?",
+        a: [
+            "Мама",
+            "Тато",
+            "Хтось із дітей",
+            "Всі одразу 😂"
+        ]
     },
 
     {
-        question: "Що мама робить краще за всіх?",
-        answers: [
-            "Підтримує",
-            "Літає",
-            "Читає думки",
-            "Все одно правильна відповідь — мама"
-        ],
-        correct: 0
+        q: "Що мама любить найбільше?",
+        a: [
+            "Коли всі вдома",
+            "Коли тихо",
+            "Коли всі слухаються",
+            "Все одразу ❤️"
+        ]
     },
 
     {
-        question: "Що завжди можна отримати від мами?",
-        answers: [
-            "Обійми",
-            "Любов",
-            "Пораду",
-            "Усе перелічене ❤️"
-        ],
-        correct: 3
+        q: "Що найкраще описує нашу маму?",
+        a: [
+            "Турботлива",
+            "Сильна",
+            "Весела",
+            "Все разом"
+        ]
     },
 
     {
-        question: "Скільки мамі виповнюється?",
-        answers: [
+        q: "Скільки років сьогодні нашій іменинниці?",
+        a: [
             "25",
             "30",
-            "35 👑",
-            "99"
-        ],
-        correct: 2
+            "35",
+            "35, але виглядає на 25 😌"
+        ]
     },
 
     {
-        question: "Хто найкраща мама?",
-        answers: [
-            "Моя мама ❤️",
-            "Моя мама ❤️",
-            "Моя мама ❤️",
-            "УСІ ВІДПОВІДІ ПРАВИЛЬНІ"
-        ],
-        correct: 3
+        q: "Яка мама?",
+        a: [
+            "Найкраща",
+            "Найрідніша",
+            "Наймиліша",
+            "ВСІ ВАРІАНТИ ❤️"
+        ]
     }
 
 ];
 
-let currentQuestion = 0;
-let score = 0;
+let quizIndex = 0;
 
-const questionElement = document.getElementById("question");
-const answersElement = document.getElementById("answers");
+const question = document.getElementById("question");
+const answers = document.getElementById("answers");
+const quizNumber = document.getElementById("quizNumber");
 const quizResult = document.getElementById("quizResult");
-const quizProgress = document.getElementById("quizProgress");
-const progressLine = document.getElementById("progressLine");
 
 function loadQuestion() {
 
-    const q = quizQuestions[currentQuestion];
+    const current = quizQuestions[quizIndex];
 
-    quizProgress.textContent =
-        String(currentQuestion + 1).padStart(2, "0");
+    quizNumber.textContent =
+        String(quizIndex + 1).padStart(2, "0");
 
-    progressLine.style.width =
-        `${((currentQuestion + 1) / quizQuestions.length) * 100}%`;
+    question.textContent = current.q;
 
-    questionElement.textContent = q.question;
+    answers.innerHTML = "";
 
-    answersElement.innerHTML = "";
-
-    quizResult.textContent = "";
-
-    q.answers.forEach((answer, index) => {
+    current.a.forEach(answer => {
 
         const button = document.createElement("button");
-
-        button.className = "answer";
 
         button.textContent = answer;
 
         button.addEventListener("click", () => {
 
-            const buttons =
-                answersElement.querySelectorAll(".answer");
-
-            buttons.forEach(btn => {
-                btn.disabled = true;
-            });
-
-            if (index === q.correct) {
-
-                button.classList.add("correct");
-
-                score++;
-
-                quizResult.textContent =
-                    "Правильно! ♡";
-
-            } else {
-
-                button.classList.add("wrong");
-
-                buttons[q.correct].classList.add("correct");
-
-                quizResult.textContent =
-                    "Майже! Але мама все одно молодець ♡";
-
-            }
+            quizResult.textContent =
+                "Правильно! ❤️";
 
             setTimeout(() => {
 
-                currentQuestion++;
+                quizIndex++;
 
-                if (currentQuestion < quizQuestions.length) {
+                if (quizIndex >= quizQuestions.length) {
 
-                    loadQuestion();
+                    quizResult.textContent =
+                        "Тест завершено! Мама знає все 😎❤️";
 
-                } else {
-
-                    finishQuiz();
+                    return;
 
                 }
 
-            }, 1100);
+                quizResult.textContent = "";
+
+                loadQuestion();
+
+            }, 700);
 
         });
 
-        answersElement.appendChild(button);
+        answers.appendChild(button);
 
     });
-
-}
-
-function finishQuiz() {
-
-    questionElement.textContent =
-        "Тест завершено!";
-
-    answersElement.innerHTML = "";
-
-    progressLine.style.width = "100%";
-
-    quizResult.textContent =
-        `Результат: ${score}/5 ❤️`;
-
-    const final = document.createElement("p");
-
-    final.style.marginTop = "15px";
-    final.style.color = "#80626e";
-    final.textContent =
-        "Але ми точно знаємо: ти найкраща мама незалежно від результату.";
-
-    answersElement.appendChild(final);
 
 }
 
 loadQuestion();
 
 
-/* ================= LETTER ================= */
+/* ================= MAGIC FINAL ================= */
 
-const envelope = document.getElementById("envelope");
+document.getElementById("magicBtn").addEventListener("click", () => {
 
-envelope.addEventListener("click", () => {
+    for (let i = 0; i < 35; i++) {
 
-    envelope.classList.toggle("open");
+        const heart = document.createElement("div");
 
-    if (envelope.classList.contains("open")) {
+        heart.textContent =
+            Math.random() > .5 ? "♡" : "✦";
 
-        showToast("Лист відкрито ❤️");
+        heart.style.position = "fixed";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.top = "100vh";
 
-    }
+        heart.style.color =
+            Math.random() > .5 ? "#e58aaa" : "#d9ae6c";
 
-});
+        heart.style.fontSize =
+            (15 + Math.random() * 30) + "px";
 
+        heart.style.zIndex = "10000";
 
-/* ================= PHOTOS MODAL ================= */
+        heart.style.pointerEvents = "none";
 
-const photoModal = document.getElementById("photoModal");
-const modalImage = document.getElementById("modalImage");
-const modalClose = document.getElementById("modalClose");
+        document.body.appendChild(heart);
 
-document.querySelectorAll(".photo-card img").forEach(img => {
+        const duration =
+            2000 + Math.random() * 2500;
 
-    img.addEventListener("click", () => {
-
-        modalImage.src = img.src;
-
-        photoModal.classList.add("show");
-
-    });
-
-});
-
-modalClose.addEventListener("click", closeModal);
-
-photoModal.addEventListener("click", event => {
-
-    if (event.target === photoModal) {
-        closeModal();
-    }
-
-});
-
-function closeModal() {
-
-    photoModal.classList.remove("show");
-
-    setTimeout(() => {
-        modalImage.src = "";
-    }, 300);
-
-}
-
-
-/* ================= CAKE ================= */
-
-const candles = document.querySelectorAll(".candle");
-const candleText = document.getElementById("candleText");
-
-let candlesLeft = candles.length;
-
-candles.forEach(candle => {
-
-    candle.addEventListener("click", () => {
-
-        if (candle.classList.contains("off")) {
-            return;
-        }
-
-        candle.classList.add("off");
-
-        candlesLeft--;
-
-        if (candlesLeft > 0) {
-
-            candleText.textContent =
-                `${candlesLeft} свічок ще горять ✨`;
-
-        } else {
-
-            candleText.textContent =
-                "БАЖАННЯ ЗАГАДАНО! ✨❤️";
-
-            createConfetti();
-
-            setTimeout(() => {
-
-                document.getElementById("finale")
-                    .scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-            }, 1000);
-
-        }
-
-    });
-
-});
-
-
-/* ================= SECRET BUTTON ================= */
-
-let secretClicks = 0;
-
-document.getElementById("secretButton")
-    .addEventListener("click", () => {
-
-        secretClicks++;
-
-        if (secretClicks === 1) {
-
-            showToast("Ти знайшла секрет 👀");
-
-        } else if (secretClicks === 2) {
-
-            showToast("Тут щось є...");
-
-        } else if (secretClicks === 3) {
-
-            showToast("СЕКРЕТНИЙ РІВЕНЬ РОЗБЛОКОВАНО! ✨");
-
-            createConfetti();
-
-            document.body.style.transition = "filter .3s";
-            document.body.style.filter = "brightness(1.08)";
-
-            setTimeout(() => {
-                document.body.style.filter = "";
-            }, 500);
-
-            secretClicks = 0;
-
-        }
-
-    });
-
-
-/* ================= FINALE ================= */
-
-document.getElementById("finalBtn")
-    .addEventListener("click", () => {
-
-        startMusic();
-
-        createConfetti();
-
-        showToast("Мамо, це все для тебе ❤️");
+        heart.animate(
+            [
+                {
+                    transform: "translateY(0) rotate(0)",
+                    opacity: 1
+                },
+                {
+                    transform:
+                        `translateY(-110vh) rotate(${Math.random() * 360}deg)`,
+                    opacity: 0
+                }
+            ],
+            {
+                duration: duration,
+                easing: "ease-out"
+            }
+        );
 
         setTimeout(() => {
+            heart.remove();
+        }, duration);
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+    }
 
-        }, 1200);
+    showToast("З 35-річчям, мамусю! ❤️✨");
 
-    });
+});
 
 
 /* ================= TOAST ================= */
-
-let toastTimer;
 
 function showToast(message) {
 
@@ -627,95 +405,10 @@ function showToast(message) {
 
     toast.classList.add("show");
 
-    clearTimeout(toastTimer);
-
-    toastTimer = setTimeout(() => {
+    setTimeout(() => {
 
         toast.classList.remove("show");
 
-    }, 2600);
+    }, 3000);
 
 }
-
-
-/* ================= CONFETTI ================= */
-
-function createConfetti() {
-
-    const symbols = ["♡", "✦", "✧", "♥", "✨"];
-
-    for (let i = 0; i < 35; i++) {
-
-        const item = document.createElement("div");
-
-        item.textContent =
-            symbols[Math.floor(Math.random() * symbols.length)];
-
-        item.style.position = "fixed";
-        item.style.left = `${Math.random() * 100}vw`;
-        item.style.top = "-30px";
-        item.style.zIndex = "8000";
-        item.style.pointerEvents = "none";
-
-        item.style.fontSize =
-            `${12 + Math.random() * 18}px`;
-
-        item.style.color =
-            ["#e28baa", "#d5ad67", "#ffffff", "#f4c3d2"]
-            [Math.floor(Math.random() * 4)];
-
-        document.body.appendChild(item);
-
-        const duration =
-            1800 + Math.random() * 1800;
-
-        item.animate(
-            [
-                {
-                    transform: "translateY(0) rotate(0deg)",
-                    opacity: 1
-                },
-                {
-                    transform:
-                        `translateY(110vh) rotate(${Math.random() * 720 - 360}deg)`,
-                    opacity: 0
-                }
-            ],
-            {
-                duration: duration,
-                easing: "cubic-bezier(.2,.7,.3,1)"
-            }
-        );
-
-        setTimeout(() => {
-            item.remove();
-        }, duration);
-
-    }
-
-}
-
-
-/* ================= KEYBOARD SECRET ================= */
-
-let secretCode = "";
-
-document.addEventListener("keydown", event => {
-
-    secretCode += event.key.toLowerCase();
-
-    if (secretCode.length > 10) {
-        secretCode = secretCode.slice(-10);
-    }
-
-    if (secretCode.includes("mama")) {
-
-        showToast("Мама — це любов ❤️");
-
-        createConfetti();
-
-        secretCode = "";
-
-    }
-
-});
