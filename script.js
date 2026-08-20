@@ -1,1116 +1,721 @@
-/* =========================================
-   LOADER
-========================================= */
+/* =========================================================
+   35 РОКІВ — ПОДАРУНОК ДЛЯ МАМИ
+========================================================= */
+
+
+/* ================= LOADER ================= */
 
 window.addEventListener("load", () => {
 
     setTimeout(() => {
-
-        document
-            .getElementById("loader")
-            .classList
-            .add("hide");
-
+        document.getElementById("loader").classList.add("hide");
     }, 1200);
 
 });
 
 
-/* =========================================
-   START BUTTON
-========================================= */
+/* ================= MUSIC ================= */
 
-document
-    .getElementById("startBtn")
-    .addEventListener("click", () => {
+const music = document.getElementById("birthdayMusic");
+const musicBtn = document.getElementById("musicBtn");
+const musicHint = document.getElementById("musicHint");
 
-        document
-            .querySelector(".intro")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
+let musicPlaying = false;
 
-        createHearts(15);
+function startMusic() {
 
-    });
+    music.play()
+        .then(() => {
 
+            musicPlaying = true;
 
-/* =========================================
-   SCROLL ANIMATIONS
-========================================= */
+            musicBtn.classList.add("playing");
+            musicBtn.textContent = "❚❚";
 
-const revealElements =
-    document.querySelectorAll(".reveal");
+            musicHint.classList.remove("show");
 
+        })
+        .catch(() => {
 
-const observer =
-    new IntersectionObserver(
-        entries => {
+            showToast("Натисни на ♫ ще раз 🎵");
 
-            entries.forEach(entry => {
+        });
+}
 
-                if (entry.isIntersecting) {
+function stopMusic() {
 
-                    entry.target
-                        .classList
-                        .add("visible");
+    music.pause();
 
-                }
+    musicPlaying = false;
 
-            });
+    musicBtn.classList.remove("playing");
+    musicBtn.textContent = "♫";
+}
 
-        },
-        {
-            threshold: .15
-        }
-    );
+musicBtn.addEventListener("click", () => {
 
-
-revealElements.forEach(element => {
-
-    observer.observe(element);
+    if (musicPlaying) {
+        stopMusic();
+    } else {
+        startMusic();
+    }
 
 });
 
 
-/* =========================================
-   35 REASONS
-========================================= */
+/* показати підказку */
+
+setTimeout(() => {
+
+    if (!musicPlaying) {
+        musicHint.classList.add("show");
+
+        setTimeout(() => {
+            musicHint.classList.remove("show");
+        }, 5000);
+    }
+
+}, 1800);
+
+
+/* ================= HERO BUTTON ================= */
+
+document.getElementById("startBtn").addEventListener("click", () => {
+
+    startMusic();
+
+    document.querySelector(".intro").scrollIntoView({
+        behavior: "smooth"
+    });
+
+});
+
+
+/* ================= REVEAL ================= */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const revealObserver = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+
+        });
+
+    },
+    {
+        threshold: 0.12
+    }
+);
+
+revealElements.forEach(element => {
+    revealObserver.observe(element);
+});
+
+
+/* ================= 35 REASONS ================= */
 
 const reasons = [
 
-    ["01", "♡", "За твоє серце", "У ньому завжди вистачає місця для всіх."],
+    "Ти завжди поруч.",
+    "Ти вмієш підтримати.",
+    "Ти даруєш тепло.",
+    "Ти вмієш розсмішити.",
+    "Твої обійми — найкращі.",
+    "Ти віриш у нас.",
+    "Ти терпиш наші витівки 😅",
+    "Ти створюєш затишок.",
+    "Ти дуже добра.",
+    "Ти сильна.",
+    "Ти турботлива.",
+    "Ти красива.",
+    "Ти надихаєш.",
+    "Ти вмієш слухати.",
+    "Ти завжди знайдеш рішення.",
+    "Ти робиш дім домом.",
+    "Ти пам'ятаєш важливі дрібниці.",
+    "Ти вмієш любити без умов.",
+    "Ти смієшся від душі.",
+    "Ти наша опора.",
+    "Ти вмієш пробачати.",
+    "Ти завжди думаєш про сім'ю.",
+    "Ти неймовірно щира.",
+    "Ти особлива.",
+    "Ти наша супергероїня.",
+    "Ти вмієш робити свята.",
+    "Ти завжди переживаєш за нас.",
+    "Ти даруєш віру.",
+    "Ти вмієш бути другом.",
+    "Ти робиш світ добрішим.",
+    "Ти наша гордість.",
+    "Ти наше натхнення.",
+    "Ти наша радість.",
+    "Ти просто наша мама.",
+    "Бо ми тебе безмежно любимо ❤️"
 
-    ["02", "✦", "За твою турботу", "Ти помічаєш навіть те, що ми намагаємося приховати."],
-
-    ["03", "☼", "За твою усмішку", "Вона здатна зробити звичайний день кращим."],
-
-    ["04", "♡", "За обійми", "Найкраще місце у світі — поруч із тобою."],
-
-    ["05", "✧", "За підтримку", "Ти завжди знаходиш правильні слова."],
-
-    ["06", "♥", "За любов", "Безумовну, справжню і величезну."],
-
-    ["07", "☕", "За затишок", "Ти вмієш перетворити дім на місце, куди хочеться повертатися."],
-
-    ["08", "✦", "За силу", "Ти сильніша, ніж сама думаєш."],
-
-    ["09", "♡", "За терпіння", "Особливо з нами 😅"],
-
-    ["10", "☼", "За сміх", "Наш сімейний саундтрек."],
-
-    ["11", "✧", "За мудрість", "Твої поради іноді працюють краще за Google."],
-
-    ["12", "♥", "За доброту", "Ти робиш світ навколо себе теплішим."],
-
-    ["13", "♡", "За віру в нас", "Навіть тоді, коли ми самі в себе не дуже віримо."],
-
-    ["14", "✦", "За пригоди", "З тобою навіть похід у магазин може стати історією."],
-
-    ["15", "☼", "За красу", "Внутрішню. І зовнішню теж, куди ж без цього."],
-
-    ["16", "♡", "За чесність", "Ти завжди скажеш правду. Навіть якщо ми її не просили 😂"],
-
-    ["17", "✧", "За атмосферу", "Поруч із тобою якось спокійніше."],
-
-    ["18", "♥", "За ніжність", "Вона відчувається навіть у маленьких речах."],
-
-    ["19", "☕", "За наші розмови", "Від серйозних до абсолютно безглуздих."],
-
-    ["20", "✦", "За пам'ять", "Ти пам'ятаєш те, що ми вже давно забули."],
-
-    ["21", "♡", "За твою енергію", "Її вистачає на всіх."],
-
-    ["22", "☼", "За сім'ю", "Ти — її серце."],
-
-    ["23", "✧", "За мрії", "Ти вчиш нас не боятися мріяти."],
-
-    ["24", "♥", "За захист", "Наш особистий супергерой без плаща."],
-
-    ["25", "♡", "За красу моментів", "Ти вмієш їх помічати."],
-
-    ["26", "✦", "За підтримку", "У будь-якій ситуації."],
-
-    ["27", "☼", "За гумор", "Без нього ми б точно не вижили."],
-
-    ["28", "♡", "За твою душу", "Вона неймовірна."],
-
-    ["29", "✧", "За тепло", "Його відчуваєш навіть здалеку."],
-
-    ["30", "♥", "За натхнення", "Ти надихаєш бути кращими."],
-
-    ["31", "☕", "За домашні моменти", "Найцінніші речі часто найпростіші."],
-
-    ["32", "✦", "За твою сміливість", "Ти не здаєшся."],
-
-    ["33", "♡", "За кожен спогад", "Ми збираємо їх разом."],
-
-    ["34", "✧", "За те, що ти — це ти", "Іншої такої мами просто немає."],
-
-    ["35", "♥", "За все", "Цю причину неможливо вмістити в одну картку."]
 ];
 
+const reasonsGrid = document.getElementById("reasonsGrid");
 
-const reasonsGrid =
-    document.getElementById("reasonsGrid");
+reasons.forEach((reason, index) => {
 
+    const card = document.createElement("div");
 
-reasons.forEach(reason => {
-
-    const card =
-        document.createElement("div");
-
-    card.className =
-        "reason-card";
+    card.className = "reason";
 
     card.innerHTML = `
+        <span class="reason-number">
+            ${String(index + 1).padStart(2, "0")}
+        </span>
 
-        <div class="reason-number">
-            ${reason[0]}
-        </div>
-
-        <div class="reason-icon">
-            ${reason[1]}
-        </div>
-
-        <h3>
-            ${reason[2]}
-        </h3>
-
-        <p>
-            ${reason[3]}
-        </p>
-
+        <p>${reason}</p>
     `;
 
-    card.addEventListener(
-        "click",
-        () => {
+    card.addEventListener("click", () => {
 
-            createHearts(4);
+        showToast(
+            index === 34
+                ? "І це найголовніша причина ❤️"
+                : `Причина №${index + 1} знайдена ♡`
+        );
 
-            showToast(
-                reason[2]
-            );
-
-        }
-    );
+    });
 
     reasonsGrid.appendChild(card);
 
 });
 
 
-/* =========================================
-   RUNAWAY "NO" BUTTON
-========================================= */
+/* ================= FUN GAME ================= */
 
-const noBtn =
-    document.getElementById("noBtn");
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const gameMessage = document.getElementById("gameMessage");
 
-const noZone =
-    document.getElementById("noZone");
-
-let noEscapes = 0;
-
+let noAttempts = 0;
 
 function moveNoButton() {
 
-    const zoneRect =
-        noZone.getBoundingClientRect();
+    noAttempts++;
 
-    const buttonRect =
-        noBtn.getBoundingClientRect();
+    const padding = 10;
 
+    const maxX = window.innerWidth - noBtn.offsetWidth - padding * 2;
+    const maxY = window.innerHeight - noBtn.offsetHeight - padding * 2;
 
-    const maxX =
-        zoneRect.width -
-        buttonRect.width;
-
-    const maxY =
-        zoneRect.height -
-        buttonRect.height;
-
-
-    const x =
-        Math.random() *
-        Math.max(1, maxX);
-
-    const y =
-        Math.random() *
-        Math.max(1, maxY);
-
-
-    noBtn.style.left =
-        `${x}px`;
-
-    noBtn.style.top =
-        `${y}px`;
-
-    noBtn.style.transform =
-        "none";
-
-
-    noEscapes++;
-
-
-    const messages = [
-
-        "Ой! Не встигла 😭",
-
-        "Вона втекла!",
-
-        "Мамо, кнопка тебе боїться 😂",
-
-        "Ще одна спроба? 👀",
-
-        "Система: відповідь «НІ» заблокована.",
-
-        "35 років тренування ухиляння від кнопок 😭"
-
-    ];
-
-
-    document
-        .getElementById("gameMessage")
-        .textContent =
-        messages[
-            Math.min(
-                noEscapes - 1,
-                messages.length - 1
-            )
-        ];
-
-}
-
-
-noBtn.addEventListener(
-    "mouseenter",
-    moveNoButton
-);
-
-
-noBtn.addEventListener(
-    "touchstart",
-    event => {
-
-        event.preventDefault();
-
-        moveNoButton();
-
-    }
-);
-
-
-noBtn.addEventListener(
-    "click",
-    event => {
-
-        event.preventDefault();
-
-        moveNoButton();
-
-    }
-);
-
-
-/* =========================================
-   CORRECT GAME ANSWER
-========================================= */
-
-function correctAnswer() {
-
-    document
-        .getElementById("gameMessage")
-        .textContent =
-        "Правильно! Інших варіантів система не передбачала 😂❤️";
-
-    createHearts(25);
-
-    showToast(
-        "МАМА = ЛЕГЕНДА ♡"
+    const x = Math.max(
+        padding,
+        Math.random() * maxX
     );
 
+    const y = Math.max(
+        padding,
+        Math.random() * maxY
+    );
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = `${x}px`;
+    noBtn.style.top = `${y}px`;
+    noBtn.style.zIndex = "4000";
+
+    const messages = [
+        "Ой-ой 😌",
+        "Не втечеш!",
+        "Ця кнопка знає правду 😂",
+        "Спробуй ще раз!",
+        "НІ — не приймається!",
+        "Мамо, ну серйозно? 😭",
+        "Це неможлива відповідь ❤️"
+    ];
+
+    gameMessage.textContent =
+        messages[Math.min(noAttempts - 1, messages.length - 1)];
+
 }
 
 
-/* =========================================
-   QUIZ
-========================================= */
+/* Комп'ютер */
 
-const questions = [
+noBtn.addEventListener("mouseenter", moveNoButton);
+
+
+/* Телефон */
+
+noBtn.addEventListener("touchstart", (event) => {
+
+    event.preventDefault();
+
+    moveNoButton();
+
+});
+
+
+/* Якщо все-таки натиснула */
+
+noBtn.addEventListener("click", (event) => {
+
+    event.preventDefault();
+
+    moveNoButton();
+
+});
+
+
+/* YES */
+
+yesBtn.addEventListener("click", () => {
+
+    gameMessage.textContent =
+        "ОТ І ПРАВИЛЬНА ВІДПОВІДЬ! 👑❤️";
+
+    yesBtn.textContent = "МАМА №1 У СВІТІ ♡";
+
+    createConfetti();
+
+});
+
+
+/* ================= QUIZ ================= */
+
+const quizQuestions = [
 
     {
-        question:
-            "Що мама найчастіше каже перед виходом?",
-
+        question: "Що мама любить найбільше?",
         answers: [
-            "Ти взяла куртку?",
-            "Вимкни світло.",
-            "Де мій телефон?",
-            "Усе перелічене."
+            "Свою сім'ю ❤️",
+            "Понеділки",
+            "Робити домашку",
+            "Стояти в черзі"
         ],
+        correct: 0
+    },
 
+    {
+        question: "Що мама робить краще за всіх?",
+        answers: [
+            "Підтримує",
+            "Літає",
+            "Читає думки",
+            "Все одно правильна відповідь — мама"
+        ],
+        correct: 0
+    },
+
+    {
+        question: "Що завжди можна отримати від мами?",
+        answers: [
+            "Обійми",
+            "Любов",
+            "Пораду",
+            "Усе перелічене ❤️"
+        ],
         correct: 3
     },
 
     {
-        question:
-            "Що найважливіше сьогодні?",
-
-        answers: [
-            "Торт",
-            "Подарунок",
-            "Гарний настрій",
-            "Мамине щастя"
-        ],
-
-        correct: 3
-    },
-
-    {
-        question:
-            "Хто головна людина в сім'ї?",
-
-        answers: [
-            "Кіт",
-            "Мама",
-            "Телевізор",
-            "Той, хто знає пароль від Wi-Fi"
-        ],
-
-        correct: 1
-    },
-
-    {
-        question:
-            "Скільки років сьогодні виповнилося мамі?",
-
+        question: "Скільки мамі виповнюється?",
         answers: [
             "25",
             "30",
-            "35",
-            "18 назавжди"
+            "35 👑",
+            "99"
         ],
-
         correct: 2
     },
 
     {
-        question:
-            "Що мама заслуговує отримувати щодня?",
-
+        question: "Хто найкраща мама?",
         answers: [
-            "Любов",
-            "Обійми",
-            "Щастя",
-            "Усе одразу ❤️"
+            "Моя мама ❤️",
+            "Моя мама ❤️",
+            "Моя мама ❤️",
+            "УСІ ВІДПОВІДІ ПРАВИЛЬНІ"
         ],
-
         correct: 3
     }
 
 ];
 
-
 let currentQuestion = 0;
-let quizScore = 0;
+let score = 0;
 
+const questionElement = document.getElementById("question");
+const answersElement = document.getElementById("answers");
+const quizResult = document.getElementById("quizResult");
+const quizProgress = document.getElementById("quizProgress");
+const progressLine = document.getElementById("progressLine");
 
-function showQuestion() {
+function loadQuestion() {
 
-    const data =
-        questions[currentQuestion];
+    const q = quizQuestions[currentQuestion];
 
+    quizProgress.textContent =
+        String(currentQuestion + 1).padStart(2, "0");
 
-    document
-        .getElementById("question")
-        .textContent =
-        data.question;
+    progressLine.style.width =
+        `${((currentQuestion + 1) / quizQuestions.length) * 100}%`;
 
+    questionElement.textContent = q.question;
 
-    document
-        .getElementById("quizProgress")
-        .textContent =
-        String(
-            currentQuestion + 1
-        ).padStart(2, "0");
+    answersElement.innerHTML = "";
 
+    quizResult.textContent = "";
 
-    document
-        .getElementById("progressLine")
-        .style.width =
-        `${((currentQuestion + 1) / questions.length) * 100}%`;
+    q.answers.forEach((answer, index) => {
 
+        const button = document.createElement("button");
 
-    const answers =
-        document.getElementById("answers");
+        button.className = "answer";
 
-    answers.innerHTML = "";
+        button.textContent = answer;
 
+        button.addEventListener("click", () => {
 
-    data.answers.forEach(
-        (answer, index) => {
+            const buttons =
+                answersElement.querySelectorAll(".answer");
 
-            const button =
-                document.createElement("button");
+            buttons.forEach(btn => {
+                btn.disabled = true;
+            });
 
-            button.className =
-                "answer";
+            if (index === q.correct) {
 
-            button.textContent =
-                answer;
+                button.classList.add("correct");
 
+                score++;
 
-            button.addEventListener(
-                "click",
-                () => {
+                quizResult.textContent =
+                    "Правильно! ♡";
 
-                    chooseAnswer(
-                        index
-                    );
+            } else {
 
-                }
-            );
+                button.classList.add("wrong");
 
+                buttons[q.correct].classList.add("correct");
 
-            answers.appendChild(button);
+                quizResult.textContent =
+                    "Майже! Але мама все одно молодець ♡";
 
-        }
-    );
+            }
 
-}
+            setTimeout(() => {
 
+                currentQuestion++;
 
-function chooseAnswer(index) {
+                if (currentQuestion < quizQuestions.length) {
 
-    const data =
-        questions[currentQuestion];
-
-    const result =
-        document.getElementById("quizResult");
-
-
-    if (
-        index ===
-        data.correct
-    ) {
-
-        quizScore++;
-
-        result.textContent =
-            "✓ Правильно! ❤️";
-
-    } else {
-
-        result.textContent =
-            "Майже 😄 Але мама все одно молодець.";
-
-    }
-
-
-    const buttons =
-        document.querySelectorAll(
-            ".answer"
-        );
-
-
-    buttons.forEach(button => {
-
-        button.disabled = true;
-
-    });
-
-
-    setTimeout(() => {
-
-        currentQuestion++;
-
-
-        if (
-            currentQuestion <
-            questions.length
-        ) {
-
-            result.textContent = "";
-
-            showQuestion();
-
-        } else {
-
-            document
-                .getElementById("question")
-                .textContent =
-                `Результат: ${quizScore}/5 🎉`;
-
-
-            document
-                .getElementById("answers")
-                .innerHTML = `
-
-                    <div
-                        style="
-                            grid-column:1/-1;
-                            text-align:center;
-                            padding:25px;
-                        "
-                    >
-
-                        <strong>
-                            ${quizScore >= 4
-                                ? "МАМА ОФІЦІЙНО ЛЕГЕНДА 🏆"
-                                : "МАМА ВСЕ ОДНО ЛЕГЕНДА 🏆"
-                            }
-                        </strong>
-
-                        <br><br>
-
-                        А тепер головне —
-                        святкувати! ❤️
-
-                    </div>
-
-                `;
-
-
-            createHearts(30);
-
-        }
-
-    }, 900);
-
-}
-
-
-showQuestion();
-
-
-/* =========================================
-   ENVELOPE
-========================================= */
-
-const envelope =
-    document.getElementById("envelope");
-
-
-envelope.addEventListener(
-    "click",
-    () => {
-
-        envelope
-            .classList
-            .toggle("open");
-
-        if (
-            envelope
-                .classList
-                .contains("open")
-        ) {
-
-            createHearts(15);
-
-            showToast(
-                "Тут заховані найважливіші слова 💌"
-            );
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   CAKE
-========================================= */
-
-const candles =
-    document.querySelectorAll(
-        ".candle"
-    );
-
-let candlesLeft =
-    candles.length;
-
-
-const candleText =
-    document.getElementById(
-        "candleText"
-    );
-
-
-candles.forEach(
-    candle => {
-
-        candle.addEventListener(
-            "click",
-            event => {
-
-                event.stopPropagation();
-
-
-                if (
-                    candle.classList
-                        .contains("off")
-                ) {
-                    return;
-                }
-
-
-                candle.classList
-                    .add("off");
-
-
-                candlesLeft--;
-
-
-                if (
-                    candlesLeft > 0
-                ) {
-
-                    candleText.textContent =
-                        `${candlesLeft} свічки ще горять ✨`;
-
-                    createHearts(5);
+                    loadQuestion();
 
                 } else {
 
-                    candleText.textContent =
-                        "Бажання загадано. ✨";
-
-
-                    createHearts(80);
-
-                    unlockFinale();
+                    finishQuiz();
 
                 }
 
-            }
-        );
+            }, 1100);
 
-    }
-);
-
-
-/* =========================================
-   FINALE
-========================================= */
-
-function unlockFinale() {
-
-    const finale =
-        document.getElementById(
-            "finale"
-        );
-
-
-    finale.classList.add(
-        "unlocked"
-    );
-
-
-    setTimeout(() => {
-
-        finale.scrollIntoView({
-            behavior: "smooth"
         });
 
-    }, 700);
-
-}
-
-
-function finalCelebration() {
-
-    createHearts(100);
-
-    showToast(
-        "Ще багато щасливих років попереду! ✨"
-    );
-
-}
-
-
-/* =========================================
-   SECRET 35
-========================================= */
-
-const secretButton =
-    document.getElementById(
-        "secretButton"
-    );
-
-
-let secretClicks = 0;
-
-
-secretButton.addEventListener(
-    "click",
-    () => {
-
-        secretClicks++;
-
-
-        if (
-            secretClicks === 1
-        ) {
-
-            showToast(
-                "Ти знайшла секрет 👀"
-            );
-
-        }
-
-
-        if (
-            secretClicks === 3
-        ) {
-
-            showToast(
-                "Окей... ти реально шукала 😂"
-            );
-
-            createHearts(20);
-
-        }
-
-
-        if (
-            secretClicks >= 5
-        ) {
-
-            showToast(
-                "LEVEL 35 ACTIVATED ✨"
-            );
-
-            createHearts(50);
-
-            document.body
-                .classList
-                .toggle(
-                    "secret-mode"
-                );
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   KEYBOARD EASTER EGG
-========================================= */
-
-let typedCode = "";
-
-
-document.addEventListener(
-    "keydown",
-    event => {
-
-        typedCode +=
-            event.key.toLowerCase();
-
-
-        if (
-            typedCode.length > 10
-        ) {
-
-            typedCode =
-                typedCode.slice(-10);
-
-        }
-
-
-        if (
-            typedCode.includes("mama")
-        ) {
-
-            createHearts(40);
-
-            showToast(
-                "МАМА ❤️"
-            );
-
-            typedCode = "";
-
-        }
-
-    }
-);
-
-
-/* =========================================
-   PHOTO MODAL
-========================================= */
-
-const photoModal =
-    document.getElementById(
-        "photoModal"
-    );
-
-const modalImage =
-    document.getElementById(
-        "modalImage"
-    );
-
-
-document
-    .querySelectorAll(
-        ".film-frame img"
-    )
-    .forEach(image => {
-
-        image.addEventListener(
-            "click",
-            event => {
-
-                event.stopPropagation();
-
-                modalImage.src =
-                    image.src;
-
-                photoModal
-                    .classList
-                    .add("open");
-
-            }
-        );
+        answersElement.appendChild(button);
 
     });
 
+}
 
-document
-    .getElementById("modalClose")
-    .addEventListener(
-        "click",
-        () => {
+function finishQuiz() {
 
-            photoModal
-                .classList
-                .remove("open");
+    questionElement.textContent =
+        "Тест завершено!";
 
-        }
-    );
+    answersElement.innerHTML = "";
 
+    progressLine.style.width = "100%";
 
-photoModal.addEventListener(
-    "click",
-    event => {
+    quizResult.textContent =
+        `Результат: ${score}/5 ❤️`;
 
-        if (
-            event.target ===
-            photoModal
-        ) {
+    const final = document.createElement("p");
 
-            photoModal
-                .classList
-                .remove("open");
+    final.style.marginTop = "15px";
+    final.style.color = "#80626e";
+    final.textContent =
+        "Але ми точно знаємо: ти найкраща мама незалежно від результату.";
 
-        }
-
-    }
-);
-
-
-/* =========================================
-   FLOATING HEARTS
-========================================= */
-
-function createHearts(amount) {
-
-    for (
-        let i = 0;
-        i < amount;
-        i++
-    ) {
-
-        const heart =
-            document.createElement("div");
-
-
-        heart.className =
-            "floating-heart";
-
-
-        heart.textContent =
-            [
-                "♡",
-                "♥",
-                "✦",
-                "✧",
-                "⋆"
-            ][
-                Math.floor(
-                    Math.random() * 5
-                )
-            ];
-
-
-        heart.style.left =
-            Math.random() * 100 +
-            "vw";
-
-
-        heart.style.bottom =
-            "-30px";
-
-
-        heart.style.fontSize =
-            12 +
-            Math.random() * 25 +
-            "px";
-
-
-        heart.style.animationDuration =
-            3 +
-            Math.random() * 3 +
-            "s";
-
-
-        document.body
-            .appendChild(heart);
-
-
-        setTimeout(
-            () => heart.remove(),
-            6500
-        );
-
-    }
+    answersElement.appendChild(final);
 
 }
 
-
-/* =========================================
-   TOAST
-========================================= */
-
-function showToast(message) {
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
+loadQuestion();
 
 
-    toast.textContent =
-        message;
+/* ================= LETTER ================= */
 
+const envelope = document.getElementById("envelope");
 
-    toast.classList.add(
-        "show"
-    );
+envelope.addEventListener("click", () => {
 
+    envelope.classList.toggle("open");
 
-    clearTimeout(
-        window.toastTimeout
-    );
+    if (envelope.classList.contains("open")) {
 
-
-    window.toastTimeout =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            2500
-        );
-
-}
-
-
-/* =========================================
-   MUSIC BUTTON
-========================================= */
-
-const musicButton = document.getElementById("musicBtn");
-const birthdayMusic = document.getElementById("birthdayMusic");
-
-let musicOn = false;
-
-musicButton.addEventListener("click", async () => {
-
-    if (!musicOn) {
-
-        try {
-            await birthdayMusic.play();
-
-            musicOn = true;
-
-            musicButton.classList.add("active");
-
-            showToast("Музика увімкнена ♫");
-
-        } catch (error) {
-
-            showToast("Натисни ще раз, щоб увімкнути музику ♫");
-
-        }
-
-    } else {
-
-        birthdayMusic.pause();
-
-        musicOn = false;
-
-        musicButton.classList.remove("active");
-
-        showToast("Музика вимкнена");
+        showToast("Лист відкрито ❤️");
 
     }
 
 });
 
 
-/* =========================================
-   SECRET MODE
-========================================= */
+/* ================= PHOTOS MODAL ================= */
 
-const secretStyle =
-    document.createElement(
-        "style"
-    );
+const photoModal = document.getElementById("photoModal");
+const modalImage = document.getElementById("modalImage");
+const modalClose = document.getElementById("modalClose");
 
+document.querySelectorAll(".photo-card img").forEach(img => {
 
-secretStyle.textContent = `
+    img.addEventListener("click", () => {
 
-    .secret-mode {
-        filter:
-            saturate(1.15)
-            contrast(1.02);
+        modalImage.src = img.src;
+
+        photoModal.classList.add("show");
+
+    });
+
+});
+
+modalClose.addEventListener("click", closeModal);
+
+photoModal.addEventListener("click", event => {
+
+    if (event.target === photoModal) {
+        closeModal();
     }
 
-    .secret-mode .number-35,
-    .secret-mode .finale-number {
-        animation:
-            secret35Glow 1s infinite alternate;
-    }
+});
 
-    @keyframes secret35Glow {
+function closeModal() {
 
-        from {
-            filter:
-                drop-shadow(
-                    0 0 0
-                    rgba(217,130,157,0)
-                );
+    photoModal.classList.remove("show");
+
+    setTimeout(() => {
+        modalImage.src = "";
+    }, 300);
+
+}
+
+
+/* ================= CAKE ================= */
+
+const candles = document.querySelectorAll(".candle");
+const candleText = document.getElementById("candleText");
+
+let candlesLeft = candles.length;
+
+candles.forEach(candle => {
+
+    candle.addEventListener("click", () => {
+
+        if (candle.classList.contains("off")) {
+            return;
         }
 
-        to {
-            filter:
-                drop-shadow(
-                    0 0 25px
-                    rgba(217,130,157,.7)
-                );
+        candle.classList.add("off");
+
+        candlesLeft--;
+
+        if (candlesLeft > 0) {
+
+            candleText.textContent =
+                `${candlesLeft} свічок ще горять ✨`;
+
+        } else {
+
+            candleText.textContent =
+                "БАЖАННЯ ЗАГАДАНО! ✨❤️";
+
+            createConfetti();
+
+            setTimeout(() => {
+
+                document.getElementById("finale")
+                    .scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+            }, 1000);
+
         }
+
+    });
+
+});
+
+
+/* ================= SECRET BUTTON ================= */
+
+let secretClicks = 0;
+
+document.getElementById("secretButton")
+    .addEventListener("click", () => {
+
+        secretClicks++;
+
+        if (secretClicks === 1) {
+
+            showToast("Ти знайшла секрет 👀");
+
+        } else if (secretClicks === 2) {
+
+            showToast("Тут щось є...");
+
+        } else if (secretClicks === 3) {
+
+            showToast("СЕКРЕТНИЙ РІВЕНЬ РОЗБЛОКОВАНО! ✨");
+
+            createConfetti();
+
+            document.body.style.transition = "filter .3s";
+            document.body.style.filter = "brightness(1.08)";
+
+            setTimeout(() => {
+                document.body.style.filter = "";
+            }, 500);
+
+            secretClicks = 0;
+
+        }
+
+    });
+
+
+/* ================= FINALE ================= */
+
+document.getElementById("finalBtn")
+    .addEventListener("click", () => {
+
+        startMusic();
+
+        createConfetti();
+
+        showToast("Мамо, це все для тебе ❤️");
+
+        setTimeout(() => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }, 1200);
+
+    });
+
+
+/* ================= TOAST ================= */
+
+let toastTimer;
+
+function showToast(message) {
+
+    const toast = document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    }, 2600);
+
+}
+
+
+/* ================= CONFETTI ================= */
+
+function createConfetti() {
+
+    const symbols = ["♡", "✦", "✧", "♥", "✨"];
+
+    for (let i = 0; i < 35; i++) {
+
+        const item = document.createElement("div");
+
+        item.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+        item.style.position = "fixed";
+        item.style.left = `${Math.random() * 100}vw`;
+        item.style.top = "-30px";
+        item.style.zIndex = "8000";
+        item.style.pointerEvents = "none";
+
+        item.style.fontSize =
+            `${12 + Math.random() * 18}px`;
+
+        item.style.color =
+            ["#e28baa", "#d5ad67", "#ffffff", "#f4c3d2"]
+            [Math.floor(Math.random() * 4)];
+
+        document.body.appendChild(item);
+
+        const duration =
+            1800 + Math.random() * 1800;
+
+        item.animate(
+            [
+                {
+                    transform: "translateY(0) rotate(0deg)",
+                    opacity: 1
+                },
+                {
+                    transform:
+                        `translateY(110vh) rotate(${Math.random() * 720 - 360}deg)`,
+                    opacity: 0
+                }
+            ],
+            {
+                duration: duration,
+                easing: "cubic-bezier(.2,.7,.3,1)"
+            }
+        );
+
+        setTimeout(() => {
+            item.remove();
+        }, duration);
 
     }
 
-`;
+}
 
-document.head.appendChild(
-    secretStyle
-);
+
+/* ================= KEYBOARD SECRET ================= */
+
+let secretCode = "";
+
+document.addEventListener("keydown", event => {
+
+    secretCode += event.key.toLowerCase();
+
+    if (secretCode.length > 10) {
+        secretCode = secretCode.slice(-10);
+    }
+
+    if (secretCode.includes("mama")) {
+
+        showToast("Мама — це любов ❤️");
+
+        createConfetti();
+
+        secretCode = "";
+
+    }
+
+});
