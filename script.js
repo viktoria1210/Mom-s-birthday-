@@ -1026,47 +1026,43 @@ function showToast(message) {
    MUSIC BUTTON
 ========================================= */
 
-const musicButton =
-    document.getElementById(
-        "musicBtn"
-    );
-
+const musicButton = document.getElementById("musicBtn");
+const birthdayMusic = document.getElementById("birthdayMusic");
 
 let musicOn = false;
 
+musicButton.addEventListener("click", async () => {
 
-musicButton.addEventListener(
-    "click",
-    () => {
+    if (!musicOn) {
 
-        musicOn =
-            !musicOn;
+        try {
+            await birthdayMusic.play();
 
+            musicOn = true;
 
-        musicButton
-            .classList
-            .toggle(
-                "active",
-                musicOn
-            );
+            musicButton.classList.add("active");
 
+            showToast("Музика увімкнена ♫");
 
-        if (musicOn) {
+        } catch (error) {
 
-            showToast(
-                "Музика увімкнена ♫"
-            );
-
-        } else {
-
-            showToast(
-                "Музика вимкнена"
-            );
+            showToast("Натисни ще раз, щоб увімкнути музику ♫");
 
         }
 
+    } else {
+
+        birthdayMusic.pause();
+
+        musicOn = false;
+
+        musicButton.classList.remove("active");
+
+        showToast("Музика вимкнена");
+
     }
-);
+
+});
 
 
 /* =========================================
