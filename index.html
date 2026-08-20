@@ -6,541 +6,956 @@
 
     <title>35 причин любити тебе, мамо ❤️</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Parisienne&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= LOADER ================= -->
+
+<div class="loader" id="loader">
+    <div class="loader-heart">♡</div>
+    <p>Готуємо дещо особливе...</p>
+    <span>для найкращої мами</span>
+</div>
+
+
+<!-- ================= MUSIC ================= -->
+
+<audio id="birthdayMusic" loop preload="auto">
+    <source src="jvke-golden-hour-(meloua.com).mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" id="musicBtn" aria-label="Музика">
+    ♫
+</button>
+
+<div class="music-hint" id="musicHint">
+    Натисни ♫ — і почнеться наша пісня
+</div>
+
+
+<!-- ================= SECRET ================= -->
+
+<button class="secret-button" id="secretButton">35</button>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="floating-hearts">
+        <span>♡</span>
+        <span>✦</span>
+        <span>♡</span>
+        <span>✧</span>
+        <span>♡</span>
+        <span>✦</span>
+    </div>
+
+    <div class="hero-content">
+
+        <p class="small-title">SPECIAL EDITION • 2026</p>
+
+        <div class="number-35">35</div>
+
+        <div class="gold-line"></div>
+
+        <h1>
+            Мамо,
+            <span>це все для тебе.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+            Один маленький сайт<br>
+            для однієї неймовірної людини.
+        </p>
+
+        <button class="luxury-btn" id="startBtn">
+            <span>Відкрити подарунок</span>
+            <b>→</b>
+        </button>
+
+        <div class="scroll-hint">
+            SCROLL TO DISCOVER
+            <span>↓</span>
+        </div>
+
+    </div>
+</section>
+
+
+<!-- ================= INTRO ================= -->
+
+<section class="intro reveal">
+
+    <div class="section-number">01</div>
+
+    <div class="intro-inner">
+
+        <p class="eyebrow">ДОРОГА МАМО</p>
+
+        <h2>
+            Сьогодні не просто<br>
+            <i>день народження.</i>
+        </h2>
+
+        <p class="intro-text">
+            Сьогодні день людини, яка робить
+            звичайні моменти особливими,
+            дім — затишним, а життя —
+            набагато теплішим.
+        </p>
+
+        <div class="signature">з любов'ю ♡</div>
+
+    </div>
+</section>
+
+
+<!-- ================= PHOTOS ================= -->
+
+<section class="film-section reveal">
+
+    <div class="section-number">02</div>
+
+    <div class="section-heading">
+
+        <p class="eyebrow">OUR STORY</p>
+
+        <h2>
+            Маленькі моменти.<br>
+            <i>Велика історія.</i>
+        </h2>
+
+    </div>
+
+    <div class="photo-grid">
+
+        <div class="photo-card large">
+            <img src="FB_IMG_1778403457414.jpg" alt="Наш момент">
+            <span>01</span>
+        </div>
+
+        <div class="photo-card">
+            <img src="FB_IMG_1778403442362.jpg" alt="Наш момент">
+            <span>02</span>
+        </div>
+
+        <div class="photo-card">
+            <img src="FB_IMG_1778403415230.jpg" alt="Наш момент">
+            <span>03</span>
+        </div>
+
+        <div class="photo-card">
+            <img src="FB_IMG_1778403382599.jpg" alt="Наш момент">
+            <span>04</span>
+        </div>
+
+        <div class="photo-card">
+            <img src="FB_IMG_1778073443913.jpg" alt="Наш момент">
+            <span>05</span>
+        </div>
+
+        <div class="photo-card">
+            <img src="InShot_20260510_122136533.jpg" alt="Наш момент">
+            <span>06</span>
+        </div>
+
+    </div>
+
+    <p class="film-caption">
+        Наведи на фото. Натисни. Згадай. ❤️
+    </p>
+
+</section>
+
+
+<!-- ================= 35 REASONS ================= -->
+
+<section class="reasons-section reveal">
+
+    <div class="section-number">03</div>
+
+    <div class="section-heading center">
+
+        <p class="eyebrow">THE LIST</p>
+
+        <h2>
+            35 причин,<br>
+            <i>чому ти особлива.</i>
+        </h2>
+
+        <p>І це далеко не всі.</p>
+
+    </div>
+
+    <div class="reasons-grid" id="reasonsGrid"></div>
+
+</section>
+
+
+<!-- ================= GAME ================= -->
+
+<section class="game-section reveal">
+
+    <div class="section-number">04</div>
+
+    <div class="game-card">
+
+        <div class="game-top">
+            <span>SECRET GAME</span>
+            <span>♥ 35</span>
+        </div>
+
+        <div class="game-icon">✦</div>
+
+        <p class="eyebrow">ВАЖЛИВЕ ПИТАННЯ</p>
+
+        <h2>
+            Мамо, ти сьогодні<br>
+            <i>найкраща мама?</i>
+        </h2>
+
+        <p class="game-description">
+            Тут є тільки одна правильна відповідь 😌
+        </p>
+
+        <div class="game-buttons">
+
+            <button class="yes-btn" id="yesBtn">
+                Звичайно, я найкраща ♡
+            </button>
+
+            <button class="no-btn" id="noBtn">
+                Ні
+            </button>
+
+        </div>
+
+        <div id="gameMessage"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= QUIZ ================= -->
+
+<section class="quiz-section reveal">
+
+    <div class="section-number">05</div>
+
+    <div class="section-heading center">
+
+        <p class="eyebrow">MOM QUIZ</p>
+
+        <h2>
+            Наскільки добре<br>
+            <i>ти знаєш свою сім'ю?</i>
+        </h2>
+
+    </div>
+
+    <div class="quiz-card">
+
+        <div class="quiz-progress">
+
+            <span id="quizProgress">01</span>
+
+            <div class="progress-bar">
+                <i id="progressLine"></i>
+            </div>
+
+            <span>05</span>
+
+        </div>
+
+        <h3 id="question"></h3>
+
+        <div class="answers" id="answers"></div>
+
+        <div class="quiz-result" id="quizResult"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LETTER ================= -->
+
+<section class="letter-section reveal">
+
+    <div class="section-number">06</div>
+
+    <div class="section-heading center">
+
+        <p class="eyebrow">PERSONAL LETTER</p>
+
+        <h2>
+            Кілька слів<br>
+            <i>від серця.</i>
+        </h2>
+
+    </div>
+
+    <div class="letter-wrapper">
+
+        <div class="envelope" id="envelope">
+
+            <div class="envelope-back"></div>
+
+            <div class="letter-paper">
+
+                <div class="letter-decoration">♡</div>
+
+                <p class="eyebrow">ДЛЯ НАЙРІДНІШОЇ</p>
+
+                <h2>
+                    Мамі.
+                </h2>
+
+                <div class="letter-content">
+
+                    <p>Мамусю ❤️</p>
+
+                    <p>
+                        Вітаю тебе з твоїм 35-річчям!
+                    </p>
+
+                    <p>
+                        Дякую тобі за любов, турботу,
+                        підтримку, сміх, обійми та за всі
+                        наші маленькі моменти, які з часом
+                        стають найбільшими спогадами.
+                    </p>
+
+                    <p>
+                        Ти — людина, яка завжди поруч.
+                        З тобою можна сміятися, говорити
+                        про все на світі, мовчати і просто
+                        бути собою.
+                    </p>
+
+                    <p>
+                        Бажаю тобі величезного щастя,
+                        міцного здоров'я, здійснення мрій,
+                        подорожей, красивих моментів
+                        і якомога більше приводів
+                        посміхатися.
+                    </p>
+
+                    <p class="big-love">
+                        Любимо тебе<br>
+                        безмежно. ♡
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="envelope-flap"></div>
+
+            <div class="envelope-seal">♡</div>
+
+        </div>
+
+        <p class="click-envelope">
+            натисни на конверт
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CAKE ================= -->
+
+<section class="cake-section reveal">
+
+    <div class="section-number">07</div>
+
+    <div class="center">
+
+        <p class="eyebrow">FINAL LEVEL</p>
+
+        <h2>
+            Загадай бажання.<br>
+            <i>І задуй свічки.</i>
+        </h2>
+
+        <p>Натискай на свічки, щоб їх загасити.</p>
+
+        <div class="birthday-cake" id="cake">
+
+            <div class="candles">
+
+                <button class="candle" data-candle="1">🕯️</button>
+                <button class="candle" data-candle="2">🕯️</button>
+                <button class="candle" data-candle="3">🕯️</button>
+                <button class="candle" data-candle="4">🕯️</button>
+                <button class="candle" data-candle="5">🕯️</button>
+
+            </div>
+
+            <div class="cake-top"></div>
+            <div class="cake-body"></div>
+            <div class="cake-bottom"></div>
+
+        </div>
+
+        <p id="candleText">
+            5 свічок ще горять ✨
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FINALE ================= -->
+
+<section class="finale" id="finale">
+
+    <div class="finale-content">
+
+        <div class="finale-stars">
+            ✦　✧　✦
+        </div>
+
+        <div class="finale-number">35</div>
+
+        <p class="eyebrow">LEVEL COMPLETE</p>
+
+        <h2>
+            З ДНЕМ<br>
+            <i>НАРОДЖЕННЯ!</i>
+        </h2>
+
+        <p class="final-message">
+            35 років — це не фінал.<br>
+            Це тільки початок нової<br>
+            прекрасної історії.
+        </p>
+
+        <div class="final-quote">
+            «Ти — наша найкраща історія.»
+        </div>
+
+        <div class="final-hearts">
+            ♡ ♡ ♡
+        </div>
+
+        <button class="luxury-btn" id="finalBtn">
+            <span>Ще одне маленьке диво</span>
+            <b>✦</b>
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- ================= MODAL ================= -->
+
+<div class="photo-modal" id="photoModal">
+
+    <button class="modal-close" id="modalClose">×</button>
+
+    <img id="modalImage" src="" alt="Фото">
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>35 причин любити тебе, мамо ❤️</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700&family=Parisienne&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <audio id="birthdayMusic" loop>
-    <source src="jvke-golden-hour-(meloua.com).mp3" type="audio/mpeg">
-    </audio>
-    <!-- LOADER -->
+<!-- ================= LOADER ================= -->
 
-    <div id="loader">
-        <div class="loader-heart">♡</div>
-        <div class="loader-text">Готуємо дещо особливе...</div>
+<div class="loader" id="loader">
+    <div class="loader-heart">♡</div>
+    <p>Готуємо дещо особливе...</p>
+    <span>для найкращої мами</span>
+</div>
+
+
+<!-- ================= MUSIC ================= -->
+
+<audio id="birthdayMusic" loop preload="auto">
+    <source src="jvke-golden-hour-(meloua.com).mp3" type="audio/mpeg">
+</audio>
+
+<button class="music-btn" id="musicBtn" aria-label="Музика">
+    ♫
+</button>
+
+<div class="music-hint" id="musicHint">
+    Натисни ♫ — і почнеться наша пісня
+</div>
+
+
+<!-- ================= SECRET ================= -->
+
+<button class="secret-button" id="secretButton">35</button>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="floating-hearts">
+        <span>♡</span>
+        <span>✦</span>
+        <span>♡</span>
+        <span>✧</span>
+        <span>♡</span>
+        <span>✦</span>
     </div>
 
+    <div class="hero-content">
 
-    <!-- MUSIC -->
+        <p class="small-title">SPECIAL EDITION • 2026</p>
 
-    <button class="music-btn" id="musicBtn">
-        ♫
-    </button>
+        <div class="number-35">35</div>
 
+        <div class="gold-line"></div>
 
-    <!-- SECRET 35 -->
+        <h1>
+            Мамо,
+            <span>це все для тебе.</span>
+        </h1>
 
-    <button class="secret-button" id="secretButton">
-        35
-    </button>
-
-
-    <!-- HERO -->
-
-    <section class="hero">
-
-        <div class="hero-stars"></div>
-
-        <div class="hero-content">
-
-            <div class="small-title">
-                SPECIAL EDITION • 2026
-            </div>
-
-            <div class="number-35">
-                35
-            </div>
-
-            <div class="hero-line"></div>
-
-            <h1>
-                Мамо,<br>
-                <span>це все для тебе.</span>
-            </h1>
-
-            <p class="hero-subtitle">
-                Один маленький сайт<br>
-                для однієї неймовірної людини.
-            </p>
-
-            <button class="luxury-btn" id="startBtn">
-                <span>Відкрити подарунок</span>
-                <b>→</b>
-            </button>
-
-            <div class="scroll-hint">
-                SCROLL TO DISCOVER
-                <span>↓</span>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- INTRO -->
-
-    <section class="intro reveal">
-
-        <div class="section-number">
-            01
-        </div>
-
-        <div class="intro-inner">
-
-            <p class="eyebrow">
-                ДОРОГА МАМО
-            </p>
-
-            <h2>
-                Сьогодні не просто<br>
-                <i>день народження.</i>
-            </h2>
-
-            <p class="intro-text">
-                Сьогодні день людини, яка робить
-                звичайні моменти особливими,
-                дім — затишним, а життя —
-                набагато теплішим.
-            </p>
-
-            <div class="signature">
-                з любов'ю ♡
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- PHOTO FILM -->
-
-    <section class="film-section reveal">
-
-        <div class="section-number">
-            02
-        </div>
-
-        <div class="section-heading">
-
-            <p class="eyebrow">
-                OUR STORY
-            </p>
-
-            <h2>
-                Маленькі моменти.<br>
-                <i>Велика історія.</i>
-            </h2>
-
-        </div>
-
-        <div class="film">
-
-            <div class="film-track">
-
-                <div class="film-frame">
-                    <img src="FB_IMG_1778403457414.jpg">
-                    <span>01</span>
-                </div>
-
-                <div class="film-frame">
-                    <img src="FB_IMG_1778403442362.jpg">
-                    <span>02</span>
-                </div>
-
-                <div class="film-frame">
-                    <img src="FB_IMG_1778403415230.jpg">
-                    <span>03</span>
-                </div>
-
-                <div class="film-frame">
-                    <img src="FB_IMG_1778403382599.jpg">
-                    <span>04</span>
-                </div>
-
-                <div class="film-frame">
-                    <img src="FB_IMG_1778073443913.jpg">
-                    <span>05</span>
-                </div>
-
-                <div class="film-frame">
-                    <img src="InShot_20260510_122136533.jpg">
-                    <span>06</span>
-                </div>
-
-            </div>
-
-        </div>
-
-        <p class="film-caption">
-            Наведи на фото. Натисни. Згадай. ❤️
+        <p class="hero-subtitle">
+            Один маленький сайт<br>
+            для однієї неймовірної людини.
         </p>
 
-    </section>
+        <button class="luxury-btn" id="startBtn">
+            <span>Відкрити подарунок</span>
+            <b>→</b>
+        </button>
 
-
-    <!-- 35 REASONS -->
-
-    <section class="reasons-section reveal">
-
-        <div class="section-number">
-            03
+        <div class="scroll-hint">
+            SCROLL TO DISCOVER
+            <span>↓</span>
         </div>
 
-        <div class="section-heading center">
+    </div>
+</section>
 
-            <p class="eyebrow">
-                THE LIST
-            </p>
 
-            <h2>
-                35 причин,<br>
-                <i>чому ти особлива.</i>
-            </h2>
+<!-- ================= INTRO ================= -->
 
-            <p>
-                І це далеко не всі.
-            </p>
+<section class="intro reveal">
 
+    <div class="section-number">01</div>
+
+    <div class="intro-inner">
+
+        <p class="eyebrow">ДОРОГА МАМО</p>
+
+        <h2>
+            Сьогодні не просто<br>
+            <i>день народження.</i>
+        </h2>
+
+        <p class="intro-text">
+            Сьогодні день людини, яка робить
+            звичайні моменти особливими,
+            дім — затишним, а життя —
+            набагато теплішим.
+        </p>
+
+        <div class="signature">з любов'ю ♡</div>
+
+    </div>
+</section>
+
+
+<!-- ================= PHOTOS ================= -->
+
+<section class="film-section reveal">
+
+    <div class="section-number">02</div>
+
+    <div class="section-heading">
+
+        <p class="eyebrow">OUR STORY</p>
+
+        <h2>
+            Маленькі моменти.<br>
+            <i>Велика історія.</i>
+        </h2>
+
+    </div>
+
+    <div class="photo-grid">
+
+        <div class="photo-card large">
+            <img src="FB_IMG_1778403457414.jpg" alt="Наш момент">
+            <span>01</span>
         </div>
 
-        <div class="reasons-grid" id="reasonsGrid"></div>
-
-    </section>
-
-
-    <!-- GAME -->
-
-    <section class="game-section reveal">
-
-        <div class="section-number">
-            04
+        <div class="photo-card">
+            <img src="FB_IMG_1778403442362.jpg" alt="Наш момент">
+            <span>02</span>
         </div>
 
-        <div class="game-card">
-
-            <div class="game-top">
-                <span>SECRET GAME</span>
-                <span>♥ 35</span>
-            </div>
-
-            <div class="game-icon">
-                ✦
-            </div>
-
-            <p class="eyebrow">
-                ВАЖЛИВЕ ПИТАННЯ
-            </p>
-
-            <h2>
-                Мамо, ти сьогодні<br>
-                <i>не найкраща мама?</i>
-            </h2>
-
-            <p>
-                Подумай дуже добре перед відповіддю...
-            </p>
-
-            <div class="game-buttons">
-
-                <button
-                    class="yes-btn"
-                    onclick="correctAnswer()">
-                    Звичайно, я найкраща ♡
-                </button>
-
-                <div class="no-zone" id="noZone">
-
-                    <button
-                        class="no-btn"
-                        id="noBtn">
-                        Ні
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div id="gameMessage"></div>
-
+        <div class="photo-card">
+            <img src="FB_IMG_1778403415230.jpg" alt="Наш момент">
+            <span>03</span>
         </div>
 
-    </section>
-
-
-    <!-- QUIZ -->
-
-    <section class="quiz-section reveal">
-
-        <div class="section-number">
-            05
+        <div class="photo-card">
+            <img src="FB_IMG_1778403382599.jpg" alt="Наш момент">
+            <span>04</span>
         </div>
 
-        <div class="section-heading center">
-
-            <p class="eyebrow">
-                MOM QUIZ
-            </p>
-
-            <h2>
-                Наскільки добре<br>
-                <i>ти знаєш свою сім'ю?</i>
-            </h2>
-
+        <div class="photo-card">
+            <img src="FB_IMG_1778073443913.jpg" alt="Наш момент">
+            <span>05</span>
         </div>
 
-        <div class="quiz-card">
-
-            <div class="quiz-progress">
-                <span id="quizProgress">01</span>
-                <div>
-                    <i id="progressLine"></i>
-                </div>
-                <span>05</span>
-            </div>
-
-            <h3 id="question"></h3>
-
-            <div
-                class="answers"
-                id="answers">
-            </div>
-
-            <div
-                class="quiz-result"
-                id="quizResult">
-            </div>
-
+        <div class="photo-card">
+            <img src="InShot_20260510_122136533.jpg" alt="Наш момент">
+            <span>06</span>
         </div>
 
-    </section>
+    </div>
+
+    <p class="film-caption">
+        Наведи на фото. Натисни. Згадай. ❤️
+    </p>
+
+</section>
 
 
-    <!-- LETTER -->
+<!-- ================= 35 REASONS ================= -->
 
-    <section class="letter-section reveal">
+<section class="reasons-section reveal">
 
-        <div class="section-number">
-            06
+    <div class="section-number">03</div>
+
+    <div class="section-heading center">
+
+        <p class="eyebrow">THE LIST</p>
+
+        <h2>
+            35 причин,<br>
+            <i>чому ти особлива.</i>
+        </h2>
+
+        <p>І це далеко не всі.</p>
+
+    </div>
+
+    <div class="reasons-grid" id="reasonsGrid"></div>
+
+</section>
+
+
+<!-- ================= GAME ================= -->
+
+<section class="game-section reveal">
+
+    <div class="section-number">04</div>
+
+    <div class="game-card">
+
+        <div class="game-top">
+            <span>SECRET GAME</span>
+            <span>♥ 35</span>
         </div>
 
-        <div class="letter-wrapper">
+        <div class="game-icon">✦</div>
 
-            <div class="envelope" id="envelope">
+        <p class="eyebrow">ВАЖЛИВЕ ПИТАННЯ</p>
 
-                <div class="envelope-back"></div>
+        <h2>
+            Мамо, ти сьогодні<br>
+            <i>найкраща мама?</i>
+        </h2>
 
-                <div class="letter-paper">
+        <p class="game-description">
+            Тут є тільки одна правильна відповідь 😌
+        </p>
 
-                    <div class="letter-decoration">
-                        ♡
-                    </div>
+        <div class="game-buttons">
 
-                    <p class="eyebrow">
-                        PERSONAL LETTER
-                    </p>
+            <button class="yes-btn" id="yesBtn">
+                Звичайно, я найкраща ♡
+            </button>
 
-                    <h2>
-                        Для найріднішої<br>
-                        <i>мами.</i>
-                    </h2>
-
-                    <div class="letter-content">
-
-                        <p>
-                            Мамусю ❤️
-                        </p>
-
-                        <p>
-                            Вітаю тебе з твоїм 35-річчям!
-                        </p>
-
-                        <p>
-                            Дякую тобі за любов, турботу,
-                            підтримку, сміх, обійми та за
-                            всі наші маленькі моменти,
-                            які з часом стають найбільшими
-                            спогадами.
-                        </p>
-
-                        <p>
-                            Ти — людина, яка завжди поруч.
-                            Людина, з якою можна сміятися,
-                            говорити про все на світі,
-                            мовчати і просто бути собою.
-                        </p>
-
-                        <p>
-                            Бажаю тобі величезного щастя,
-                            міцного здоров'я, здійснення
-                            мрій, подорожей, красивих
-                            моментів і якомога більше
-                            приводів посміхатися.
-                        </p>
-
-                        <p class="big-love">
-                            Любимо тебе<br>
-                            безмежно. ♡
-                        </p>
-
-                    </div>
-
-                </div>
-
-                <div class="envelope-flap"></div>
-
-                <div class="envelope-seal">
-                    ♡
-                </div>
-
-            </div>
-
-            <p class="click-envelope">
-                натисни на конверт
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- CAKE -->
-
-    <section class="cake-section reveal">
-
-        <div class="section-number">
-            07
-        </div>
-
-        <div class="center">
-
-            <p class="eyebrow">
-                FINAL LEVEL
-            </p>
-
-            <h2>
-                Загадай бажання.<br>
-                <i>І задуй свічки.</i>
-            </h2>
-
-            <p>
-                Натискай на торт, щоб гасити свічки.
-            </p>
-
-            <div
-                class="birthday-cake"
-                id="cake">
-
-                <div class="candles">
-
-                    <span class="candle" id="c1">🕯️</span>
-                    <span class="candle" id="c2">🕯️</span>
-                    <span class="candle" id="c3">🕯️</span>
-                    <span class="candle" id="c4">🕯️</span>
-                    <span class="candle" id="c5">🕯️</span>
-
-                </div>
-
-                <div class="cake-top"></div>
-                <div class="cake-body"></div>
-                <div class="cake-bottom"></div>
-
-            </div>
-
-            <p id="candleText">
-                5 свічок ще горять ✨
-            </p>
-
-        </div>
-
-    </section>
-
-
-    <!-- FINALE -->
-
-    <section
-        class="finale"
-        id="finale">
-
-        <div class="finale-content">
-
-            <div class="finale-stars">
-                ✦　✧　✦
-            </div>
-
-            <div class="finale-number">
-                35
-            </div>
-
-            <p class="eyebrow">
-                LEVEL COMPLETE
-            </p>
-
-            <h2>
-                З ДНЕМ<br>
-                <i>НАРОДЖЕННЯ!</i>
-            </h2>
-
-            <p class="final-message">
-                35 років — це не фінал.<br>
-                Це тільки початок нової<br>
-                прекрасної історії.
-            </p>
-
-            <div class="final-quote">
-                «Ти — наша найкраща історія.»
-            </div>
-
-            <div class="final-hearts">
-                ♡ ♡ ♡
-            </div>
-
-            <button
-                class="luxury-btn"
-                onclick="finalCelebration()">
-                <span>Ще одне маленьке диво</span>
-                <b>✦</b>
+            <button class="no-btn" id="noBtn">
+                Ні
             </button>
 
         </div>
 
-    </section>
+        <div id="gameMessage"></div>
+
+    </div>
+
+</section>
 
 
-    <!-- PHOTO MODAL -->
+<!-- ================= QUIZ ================= -->
 
-    <div
-        class="photo-modal"
-        id="photoModal">
+<section class="quiz-section reveal">
 
-        <button
-            class="modal-close"
-            id="modalClose">
-            ×
+    <div class="section-number">05</div>
+
+    <div class="section-heading center">
+
+        <p class="eyebrow">MOM QUIZ</p>
+
+        <h2>
+            Наскільки добре<br>
+            <i>ти знаєш свою сім'ю?</i>
+        </h2>
+
+    </div>
+
+    <div class="quiz-card">
+
+        <div class="quiz-progress">
+
+            <span id="quizProgress">01</span>
+
+            <div class="progress-bar">
+                <i id="progressLine"></i>
+            </div>
+
+            <span>05</span>
+
+        </div>
+
+        <h3 id="question"></h3>
+
+        <div class="answers" id="answers"></div>
+
+        <div class="quiz-result" id="quizResult"></div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= LETTER ================= -->
+
+<section class="letter-section reveal">
+
+    <div class="section-number">06</div>
+
+    <div class="section-heading center">
+
+        <p class="eyebrow">PERSONAL LETTER</p>
+
+        <h2>
+            Кілька слів<br>
+            <i>від серця.</i>
+        </h2>
+
+    </div>
+
+    <div class="letter-wrapper">
+
+        <div class="envelope" id="envelope">
+
+            <div class="envelope-back"></div>
+
+            <div class="letter-paper">
+
+                <div class="letter-decoration">♡</div>
+
+                <p class="eyebrow">ДЛЯ НАЙРІДНІШОЇ</p>
+
+                <h2>
+                    Мамі.
+                </h2>
+
+                <div class="letter-content">
+
+                    <p>Мамусю ❤️</p>
+
+                    <p>
+                        Вітаю тебе з твоїм 35-річчям!
+                    </p>
+
+                    <p>
+                        Дякую тобі за любов, турботу,
+                        підтримку, сміх, обійми та за всі
+                        наші маленькі моменти, які з часом
+                        стають найбільшими спогадами.
+                    </p>
+
+                    <p>
+                        Ти — людина, яка завжди поруч.
+                        З тобою можна сміятися, говорити
+                        про все на світі, мовчати і просто
+                        бути собою.
+                    </p>
+
+                    <p>
+                        Бажаю тобі величезного щастя,
+                        міцного здоров'я, здійснення мрій,
+                        подорожей, красивих моментів
+                        і якомога більше приводів
+                        посміхатися.
+                    </p>
+
+                    <p class="big-love">
+                        Любимо тебе<br>
+                        безмежно. ♡
+                    </p>
+
+                </div>
+
+            </div>
+
+            <div class="envelope-flap"></div>
+
+            <div class="envelope-seal">♡</div>
+
+        </div>
+
+        <p class="click-envelope">
+            натисни на конверт
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CAKE ================= -->
+
+<section class="cake-section reveal">
+
+    <div class="section-number">07</div>
+
+    <div class="center">
+
+        <p class="eyebrow">FINAL LEVEL</p>
+
+        <h2>
+            Загадай бажання.<br>
+            <i>І задуй свічки.</i>
+        </h2>
+
+        <p>Натискай на свічки, щоб їх загасити.</p>
+
+        <div class="birthday-cake" id="cake">
+
+            <div class="candles">
+
+                <button class="candle" data-candle="1">🕯️</button>
+                <button class="candle" data-candle="2">🕯️</button>
+                <button class="candle" data-candle="3">🕯️</button>
+                <button class="candle" data-candle="4">🕯️</button>
+                <button class="candle" data-candle="5">🕯️</button>
+
+            </div>
+
+            <div class="cake-top"></div>
+            <div class="cake-body"></div>
+            <div class="cake-bottom"></div>
+
+        </div>
+
+        <p id="candleText">
+            5 свічок ще горять ✨
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FINALE ================= -->
+
+<section class="finale" id="finale">
+
+    <div class="finale-content">
+
+        <div class="finale-stars">
+            ✦　✧　✦
+        </div>
+
+        <div class="finale-number">35</div>
+
+        <p class="eyebrow">LEVEL COMPLETE</p>
+
+        <h2>
+            З ДНЕМ<br>
+            <i>НАРОДЖЕННЯ!</i>
+        </h2>
+
+        <p class="final-message">
+            35 років — це не фінал.<br>
+            Це тільки початок нової<br>
+            прекрасної історії.
+        </p>
+
+        <div class="final-quote">
+            «Ти — наша найкраща історія.»
+        </div>
+
+        <div class="final-hearts">
+            ♡ ♡ ♡
+        </div>
+
+        <button class="luxury-btn" id="finalBtn">
+            <span>Ще одне маленьке диво</span>
+            <b>✦</b>
         </button>
 
-        <img
-            id="modalImage"
-            src="">
-
     </div>
 
-
-    <!-- TOAST -->
-
-    <div
-        class="toast"
-        id="toast">
-    </div>
+</section>
 
 
-    <script src="script.js"></script>
+<!-- ================= MODAL ================= -->
+
+<div class="photo-modal" id="photoModal">
+
+    <button class="modal-close" id="modalClose">×</button>
+
+    <img id="modalImage" src="" alt="Фото">
+
+</div>
+
+
+<div class="toast" id="toast"></div>
+
+
+<script src="script.js"></script>
 
 </body>
-              </html>
+</html>
